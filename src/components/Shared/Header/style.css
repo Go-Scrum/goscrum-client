@@ -1,0 +1,32 @@
+.logo {
+    max-width: 75px;
+}
+
+.desktop-menu a span, .desktop-menu a svg {
+    color: #9e9e9e;
+}
+
+.desktop-menu a svg {
+    margin-right: 0;
+}
+
+.desktop-menu a:hover span, .desktop-menu a:hover svg, .desktop-menu a.active span, .desktop-menu a.active svg {
+    color: #ffffff;
+}
+
+.desktop-menu ul {
+    display: flex;
+}
+
+.desktop-menu ul a{
+    display: inline-flex;
+}
+
+@media only screen and (max-width: 576px) {
+    .logo {
+        max-width: 50px;
+    }
+    .header-title {
+        font-size: 1em;
+    }
+}

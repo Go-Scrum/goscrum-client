@@ -1,0 +1,143 @@
+body {
+    background-color: #eee;
+    color: #3c4858;
+}
+
+button {
+    outline: none !important;
+}
+
+/*-------Updated toast CSS as per bootstrap-------*/
+.toast {
+    z-index: 99999 !important;
+}
+
+.toast-success {
+    background-color: #d4edda !important;
+    color: #155724 !important;
+}
+
+.toast-success button {
+    color: #155724 !important;
+}
+
+.toast-info {
+    color: #0c5460 !important;
+    background-color: #d1ecf1 !important;
+}
+
+.toast-info button {
+    color: #0c5460 !important;
+}
+
+.toast-error {
+    color: #721c24 !important;
+    background-color: #f8d7da !important;
+}
+
+.toast-error button {
+    color: #721c24 !important;
+}
+
+/*-------Updated toast CSS as per bootstrap-------*/
+
+.text-transform-none {
+    text-transform: none;
+}
+
+.opacity-none {
+    opacity: 1 !important;
+}
+
+/*-------Sticky Footer bootstrap-------*/
+.site {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* 1, 3 */
+}
+
+.site-header,
+.site-footer {
+    flex: none; /* 2 */
+}
+
+.site-content {
+    flex: 1 0 auto; /* 2 */
+    width: 100%;
+}
+
+.site-content::after {
+    content: '\00a0'; /* &nbsp; */
+    display: block;
+    margin-top: 1.5em;
+    height: 0;
+    visibility: hidden;
+}
+
+@media (min-width: 768px) {
+    .site-content::after {
+        margin-top: 1.5em;
+    }
+}
+
+.site-content--full {
+    padding: 0;
+}
+
+.site-content--full::after {
+    content: none;
+}
+
+.infinite-scroll-card {
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: auto;
+    position: relative;
+}
+
+.text-wrap {
+    word-wrap: break-word;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.button-link:hover {
+    color: white;
+}
+
+a:hover {
+    color: black;
+}
+
+/**Added to remove safari human icon**/
+input::-webkit-contacts-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+}
+/**Added to remove safari human icon**/
+
+/**Added to remove scrollbar in edge**/
+
+@supports (-ms-ime-align: auto) {
+    .text-wrap {
+        word-wrap: break-word;
+        word-break: break-all;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+    }
+
+    html, body { -ms-overflow-style: none; overflow: auto; }
+
+    input::-ms-clear {
+        display: none;
+    }
+}
+/**Added to remove scrollbar in edge**/
+

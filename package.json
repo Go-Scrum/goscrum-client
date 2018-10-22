@@ -1,0 +1,78 @@
+{
+  "name": "ReactAWSStarterKit",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "/",
+  "dependencies": {
+    "@material-ui/core": "^1.5.1",
+    "@material-ui/icons": "^2.0.3",
+    "accounting": "^0.4.1",
+    "amazon-cognito-auth-js": "^1.2.4",
+    "amazon-cognito-identity-js": "^1.16.0",
+    "aws-amplify": "^1.1.5",
+    "aws-amplify-react": "^2.0.6",
+    "aws-sdk": "^2.34.0",
+    "babel-polyfill": "6.26.0",
+    "bootstrap": "4.0.0-beta.3",
+    "history": "4.7.2",
+    "lodash": "4.17.4",
+    "material-ui-pickers": "^1.0.0-rc.14",
+    "moment": "^2.20.1",
+    "prop-types": "15.6.0",
+    "query-string": "5",
+    "react": "16.4.1",
+    "react-dom": "16.4.1",
+    "react-loadable": "5.3.1",
+    "react-redux": "5.0.6",
+    "react-router-dom": "4.2.2",
+    "react-router-redux": "5.0.0-alpha.9",
+    "react-scripts": "1.1.1",
+    "react-toastify": "3.0.0",
+    "redux": "3.7.2",
+    "redux-thunk": "2.2.0",
+    "reselect": "3.0.1"
+  },
+  "scripts": {
+    "start": "sh -ac '. .env.dev; react-scripts start'",
+    "start:staging": "sh -ac '. .env.${REACT_APP_ENV}; react-scripts start'",
+    "build": "sh -ac '. ./.env.${REACT_APP_ENV}; react-scripts build'",
+    "build:dev": "REACT_APP_ENV=dev npm run build",
+    "build:staging": "REACT_APP_ENV=stage npm run build",
+    "build:uat": "REACT_APP_ENV=uat npm run build",
+    "build:production": "REACT_APP_ENV=production npm run build",
+    "test": "react-scripts test --env=jsdom --colors",
+    "test:coverage": "react-scripts test --env=jsdom --ci --runInBand --coverage --colors",
+    "deploy": "aws s3 sync build/ s3://s3-bucket-name --delete",
+    "format:js": "prettier --config .prettierrc \"src/**/*.js\" --write",
+    "lint:js": "eslint --config .eslintrc \"src/**/*.js\"",
+    "lint:style": "stylelint \"src/**/*.scss\""
+  },
+  "devDependencies": {
+    "eslint": "4.13.1",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-import-resolver-webpack": "0.8.3",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.5.1",
+    "husky": "0.14.3",
+    "lint-staged": "5.0.0",
+    "prettier": "1.8.2",
+    "react-custom-scrollbars": "^4.2.1",
+    "redux-devtools-extension": "2.13.2",
+    "redux-logger": "3.0.6",
+    "serverless-sync-s3buckets": "^1.0.1",
+    "stylelint": "8.3.1",
+    "stylelint-config-standard": "18.0.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run format:js",
+      "npm run lint:js",
+      "git add"
+    ],
+    "*.scss": [
+      "npm run lint:style",
+      "git add"
+    ]
+  }
+}
