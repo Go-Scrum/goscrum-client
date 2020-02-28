@@ -75,7 +75,7 @@ function MainMenuContent({ location }) {
                     <ListItemIcon>
                         <StyledFontAwesomeIcon icon={faTachometerAlt} fixedWidth />
                     </ListItemIcon>
-                    <StyledListItemText primary="Dashboard" />
+                    <StyledListItemText primary="On Boarding" />
                 </ListItem>
             </AppLink>
             <AppLink to="/projects">

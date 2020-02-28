@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStyles, Grid, Typography, Box, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { withRouter } from 'react-router';
 import AppIcon from '../Shared/AppIcon/app-icon';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import Button from '@material-ui/core/Button';
@@ -13,7 +14,7 @@ const useStyles = makeStyles((theme) =>
     }),
 );
 
-function OnBoardingSection() {
+function OnBoardingSection({ history }) {
     const classes = useStyles();
 
     return (
@@ -25,7 +26,7 @@ function OnBoardingSection() {
             justify="center"
             className={classes.grid}
         >
-            <CssBaseline />
+            <CssBaseline/>
             <Box align="center" paddingX={20} paddingY={10}>
                 <img alt="landing" src="/images/onboard.svg" className={classes.image}/>
                 <Box marginY={3}>
@@ -37,8 +38,7 @@ function OnBoardingSection() {
                 </Box>
                 <Box>
                     <Button
-                        onClick={() => {
-                        }}
+                        onClick={() => history.push('/settings')}
                         color="primary"
                         variant="outlined"
                         className={classes.submit}
@@ -51,4 +51,4 @@ function OnBoardingSection() {
     );
 }
 
-export default OnBoardingSection;
+export default withRouter(OnBoardingSection);
