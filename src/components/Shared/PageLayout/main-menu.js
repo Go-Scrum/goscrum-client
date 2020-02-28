@@ -11,17 +11,12 @@ import { styled } from '@material-ui/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTachometerAlt,
-    faUsers,
-    faPeopleCarry,
-    faStore,
     faCog,
-    faSignLanguage,
     faProjectDiagram,
 } from '@fortawesome/free-solid-svg-icons';
 import { makeStyles } from '@material-ui/core/styles';
 
 import AppLink from '../AppLink/app-link';
-// import logo from '../../logo.svg';
 import theme from '../../../utils/mui-theme';
 
 const StyledListItemText = styled(ListItemText)({
@@ -62,8 +57,7 @@ function MainMenuContent({ location }) {
         <List>
             <AppLink to="/dashboard">
                 <ListItem className={classes.logoWrapper}>
-                    {/* <img src={logo} alt="logo" className={classes.logo} /> */}
-                    LOGO
+                     <img src="/images/logo.png" alt="logo" className={classes.logo} />
                 </ListItem>
             </AppLink>
             <AppLink to="/dashboard">

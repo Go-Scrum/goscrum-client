@@ -146,7 +146,7 @@ function LandingPage() {
             <ColorChangeScroll>
                 <AppBar color="transparent" className={classes.bar}>
                     <Toolbar className={classes.toolbar}>
-                        <img src="" alt="logo" className={classes.logo} />
+                        <img src="/images/logo.png" alt="logo" className={classes.logo} />
                         <AuthButton />
                     </Toolbar>
                 </AppBar>
