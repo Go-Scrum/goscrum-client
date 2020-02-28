@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
+import { ConnectedRouter } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';

@@ -11,3 +11,10 @@ export const ROUTE_TABLE = {
     dashboard: '/dashboard',
     resetPassword: '/reset-password',
 };
+
+export const LOADER_TYPE = {
+    content: "content",
+    table: "table",
+    fullView: "fullView",
+    card: "card"
+};

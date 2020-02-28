@@ -50,7 +50,7 @@ export default store => next => action => {
         .catch(exception => {
             const error = get(exception, 'response', {});
             if (error.status === 401) {
-                const currentPath = store.getState().routing.pathname;
+                const currentPath = store.getState().router.pathname;
                 if (!includes(currentPath, 'login')) {
                     // next(push(`/login?nextPathname=${currentPath}`));
                 } else {

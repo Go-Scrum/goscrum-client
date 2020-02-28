@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import Lock from '@material-ui/icons/Lock';
+// import Lock from '@material-ui/icons/Lock';
 
 import './style.css';
 
@@ -14,9 +14,9 @@ const VerifyPassword = ({ forgotPassword, updateFormValues, submitChangePassword
             alignItems="flex-end"
             className="mt-5 mb-2"
         >
-            <Grid item sm={1}>
-                <Lock className="text-muted" />
-            </Grid>
+            {/*<Grid item sm={1}>*/}
+            {/*    <Lock className="text-muted" />*/}
+            {/*</Grid>*/}
             <Grid item sm={11} className="fullWidth">
                 <TextField
                     id="forgot-input-password"
@@ -34,9 +34,9 @@ const VerifyPassword = ({ forgotPassword, updateFormValues, submitChangePassword
             alignItems="flex-end"
             className="mt-2 mb-5"
         >
-            <Grid item sm={1}>
-                <Lock className="text-muted" />
-            </Grid>
+            {/*<Grid item sm={1}>*/}
+            {/*    <Lock className="text-muted" />*/}
+            {/*</Grid>*/}
             <Grid item sm={11} className="fullWidth">
                 <TextField
                     id="forgot-input-confirm-password"

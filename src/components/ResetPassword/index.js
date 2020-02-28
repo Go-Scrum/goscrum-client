@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import Lock from '@material-ui/icons/Lock';
+// import Lock from '@material-ui/icons/Lock';
 import PaperHeader from '../Shared/PaperHeader';
 
 import './style.css';
@@ -55,9 +55,9 @@ const ResetPassword = ({ resetPassword, classes, handleResetPassword, updateForm
                         alignItems="flex-end"
                         className="mt-3 mb-2"
                     >
-                        <Grid item sm={1}>
-                            <Lock className="text-muted" />
-                        </Grid>
+                        {/*<Grid item sm={1}>*/}
+                        {/*    <Lock className="text-muted" />*/}
+                        {/*</Grid>*/}
                         <Grid item sm={11} className="fullWidth">
                             <TextField
                                 id="reset-input-password"
@@ -75,9 +75,9 @@ const ResetPassword = ({ resetPassword, classes, handleResetPassword, updateForm
                         alignItems="flex-end"
                         className="mb-2"
                     >
-                        <Grid item sm={1}>
-                            <Lock className="text-muted" />
-                        </Grid>
+                        {/*<Grid item sm={1}>*/}
+                        {/*    <Lock className="text-muted" />*/}
+                        {/*</Grid>*/}
                         <Grid item sm={11} className="fullWidth">
                             <TextField
                                 id="reset-input-new-password"
@@ -95,9 +95,9 @@ const ResetPassword = ({ resetPassword, classes, handleResetPassword, updateForm
                         alignItems="flex-end"
                         className="mb-2"
                     >
-                        <Grid item sm={1}>
-                            <Lock className="text-muted" />
-                        </Grid>
+                        {/*<Grid item sm={1}>*/}
+                        {/*    <Lock className="text-muted" />*/}
+                        {/*</Grid>*/}
                         <Grid item sm={11} className="fullWidth">
                             <TextField
                                 id="reset-input-confirm-password"

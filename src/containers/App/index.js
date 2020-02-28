@@ -11,7 +11,7 @@ import { makeSelectUser } from './selectors';
 
 const App = ({ children, displayHeader, childProps, user }) => (
     <div className="site">
-        <If condition={displayHeader} >
+        <If condition={displayHeader}>
             <Header childProps={childProps} user={user} />
         </If>
         <main className="site-content">{React.cloneElement(children, [])}</main>
@@ -32,7 +32,7 @@ const mapStateToProps = createSelector(
     [makeSelectUser()],
     (user) => ({
         user,
-    })
+    }),
 );
 
 export default withRouter(connect(mapStateToProps, null)(App));

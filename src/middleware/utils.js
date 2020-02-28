@@ -10,7 +10,7 @@ export const apiActionTypes = x => ({
 });
 
 export const actionWith = (requestConfig, data) => {
-    const finalAction = Object.assign({}, requestConfig, data);
+    const finalAction = { ...requestConfig, ...data };
     delete finalAction[CALL_API];
     return finalAction;
 };
@@ -48,8 +48,8 @@ export const callApi = async requestConfig => {
             Cache.setItem('session', session);
         }
 
-        const headers = Object.assign({}, requestConfig.headers, { jwtToken: session.idToken.jwtToken });
-        const config = Object.assign({}, requestConfig.config, { headers });
+        const headers = { ...requestConfig.headers, jwtToken: session.idToken.jwtToken };
+        const config = { ...requestConfig.config, ...headers };
         return API[getMethod(requestConfig.method)](ENDPOINT, requestConfig.path, config).then(response => {
             if (response.status >= 200 && response.status <= 204) {
                 if (response.data) {

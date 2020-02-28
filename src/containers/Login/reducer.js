@@ -12,7 +12,7 @@ const initialData = {
     },
 };
 
-export default function loginReducer(state = initialData, { payload, ...action }) {
+export default function loginReducer(state = initialData, { payload, ...action } = {}) {
     switch (action.type) {
         case UPDATE_FORM_VALUES:
             return {

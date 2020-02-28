@@ -13,6 +13,7 @@ import Loader from './components/Shared/Loader';
 import { ENDPOINT } from './middleware/constants';
 import * as actions from './containers/App/actions';
 import { attributesToObject } from './utils/attributesToObject';
+import theme from './utils/mui-theme';
 
 Amplify.configure({
     Auth: {
@@ -31,35 +32,35 @@ Amplify.configure({
     },
 });
 
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: '#11131b',
-            light: '#757575',
-            contrastText: '#fff',
-        },
-        secondary: {
-            main: '#929292',
-            contrastText: '#fff',
-        },
-        // background:{
-        //     paper: '#757575',
-        // },
-        common: {
-            black: '#000',
-            white: '#fff',
-        },
-    },
-    breakpoints: {
-        values: {
-            xs: 0,
-            sm: 576,
-            md: 768,
-            lg: 992,
-            xl: 1200,
-        },
-    },
-});
+// const theme = createMuiTheme({
+//     palette: {
+//         primary: {
+//             main: '#11131b',
+//             light: '#757575',
+//             contrastText: '#fff',
+//         },
+//         secondary: {
+//             main: '#929292',
+//             contrastText: '#fff',
+//         },
+//         // background:{
+//         //     paper: '#757575',
+//         // },
+//         common: {
+//             black: '#000',
+//             white: '#fff',
+//         },
+//     },
+//     breakpoints: {
+//         values: {
+//             xs: 0,
+//             sm: 576,
+//             md: 768,
+//             lg: 992,
+//             xl: 1200,
+//         },
+//     },
+// });
 
 class App extends Component {
     constructor(props) {

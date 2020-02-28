@@ -1,80 +1,143 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import loader from '../../../assets/images/loader.gif';
-import loaderInv from '../../../assets/images/loaderInv.gif';
-import './styles.css';
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import ContentLoader from 'react-content-loader';
+import { Typography, Dialog } from '@material-ui/core';
+import { styled } from '@material-ui/styles';
+import { LOADER_TYPE } from '../../../utils/Constants';
+import theme from '../../../utils/mui-theme';
 
-const getWrapperClass = (isInline, isInlineCover) => {
-    if (isInline) {
-        return 'inline-loading-container-wrapper';
-    } else if (isInlineCover) {
-        return 'loading-container-wrapper inline-cover';
-    }
-    return 'loading-container-wrapper';
+const TableRow = (props) => {
+    const random = Math.random() * (1 - 0.7) + 0.7;
+    return (
+        <ContentLoader
+            height={20}
+            width={1060}
+            speed={2}
+            primaryColor="#d9d9d9"
+            secondaryColor="#ecebeb"
+            style={props.style}
+        >
+            <rect x="34" y="13" rx="3" ry="3" width={200 * random} height="5" />
+            <rect x="300" y="13" rx="3" ry="3" width={78 * random} height="5" />
+            <rect x="450" y="13" rx="3" ry="3" width={78 * random} height="5" />
+            <rect x="603" y="13" rx="3" ry="3" width={78 * random} height="5" />
+            <rect x="755" y="13" rx="3" ry="3" width={117 * random} height="5" />
+            <rect x="938" y="13" rx="3" ry="3" width={83 * random} height="5" />
+        </ContentLoader>
+    );
 };
 
-const getLoaderClass = (isInline, isInlineCover) => {
-    if (isInline) {
-        return 'inline-loading-container';
-    } else if (isInlineCover) {
-        return 'loading-container inline-cover';
-    }
-    return 'loading-container';
-};
-
-const LoadingWrapper = ({ children, isInline, isInlineCover }) => (
-    <div className={getWrapperClass(isInline, isInlineCover)}>
-        <div className={getLoaderClass(isInline, isInlineCover)}>{children}</div>
-    </div>
+const TableLoader = () => (
+    <>
+        {Array(5)
+            .fill('')
+            .map((e, i) => (
+                <TableRow key={i} style={{ opacity: Number(2 / i + 1) }} />
+            ))}
+    </>
 );
 
-LoadingWrapper.propTypes = {
-    children: PropTypes.object,
-    isInline: PropTypes.bool,
-    isInlineCover: PropTypes.bool,
-};
+const CardContentLoader = () => (
+    <ContentLoader
+        height={80}
+        width={400}
+        speed={2}
+        primaryColor="#d9d9d9"
+        secondaryColor="#ecebeb"
+    >
+        <rect x="0" y="0" rx="3" ry="3" width="250" height="3" />
+        <rect x="20" y="10" rx="3" ry="3" width="220" height="3" />
+        <rect x="20" y="20" rx="3" ry="3" width="170" height="3" />
+        <rect x="0" y="30" rx="3" ry="3" width="250" height="3" />
+        <rect x="20" y="40" rx="3" ry="3" width="200" height="3" />
+        <rect x="20" y="50" rx="3" ry="3" width="80" height="3" />
+    </ContentLoader>
+);
 
-const Loading = props => {
-    let loaderImage = loader;
-    if (props.isInline) {
-        loaderImage = loaderInv;
+const CardLoader = () => (
+    <ContentLoader
+        height={80}
+        width={400}
+        speed={2}
+        primaryColor={theme.palette.background.paper}
+        secondaryColor={theme.palette.grey[900]}
+    >
+        <rect x="0" y="0" rx="3" ry="3" width="100%" height="150" />
+        <rect x="0" y="80" rx="3" ry="3" width="100%" height="150" />
+        <rect x="0" y="150" rx="3" ry="3" width="100%" height="150" />
+    </ContentLoader>
+);
+
+const StyledDialog = styled(Dialog)({
+    justifyContent: 'center',
+    alignItems: 'center',
+});
+
+const FullViewLoader = ({ message }) => (
+    <StyledDialog
+        PaperProps={{
+            style: {
+                backgroundColor: 'transparent',
+                boxShadow: 'none',
+            },
+        }}
+        open
+    >
+        <FontAwesomeIcon icon={faCircleNotch} spin size="4x" />
+        {message}
+    </StyledDialog>
+);
+
+class Loader extends Component {
+    state = {
+        showLoader: false,
+    };
+
+    timeout = null;
+
+    componentDidMount() {
+        const { delay } = this.props;
+        this.timeout = setTimeout(() => {
+            this.setState({ showLoader: true });
+        }, delay || 250);
     }
-    if (props.error) {
+
+    componentWillUnmount() {
+        if (this.timeout) {
+            clearTimeout(this.timeout);
+        }
+    }
+
+    render() {
+        const { large, message, type } = this.props;
+        const { showLoader } = this.state;
+        if (!showLoader) {
+            return null;
+        }
+        if (type === LOADER_TYPE.table) {
+            return <TableLoader />;
+        }
+        if (type === LOADER_TYPE.content) {
+            return <CardContentLoader />;
+        }
+        if (type === LOADER_TYPE.card) {
+            return <CardLoader />;
+        }
+        if (type === LOADER_TYPE.fullView) {
+            return <FullViewLoader message={message} />;
+        }
         return (
-            <LoadingWrapper isInline={props.isInline} isInlineCover={props.isInlineCover}>
-                <p>Something went wrong!</p>
-            </LoadingWrapper>
+            <Typography variant={large ? 'h4' : 'body1'}>
+                <FontAwesomeIcon
+                    icon={faCircleNotch}
+                    spin
+                    style={{ marginRight: '.5em' }}
+                />
+                {message}
+            </Typography>
         );
     }
-    if (props.timedOut) {
-        return (
-            <LoadingWrapper isInline={props.isInline} isInlineCover={props.isInlineCover}>
-                <div className={props.isInline ? 'text-center' : 'text-center mt-5'}>
-                    <img src={loaderImage} alt="logo" />
-                </div>
-            </LoadingWrapper>
-        );
-    }
-    if (props.pastDelay) {
-        return (
-            <LoadingWrapper isInline={props.isInline} isInlineCover={props.isInlineCover}>
-                <span>
-                    <div className="dot" />
-                    <div className="dot" />
-                    <div className="dot" />
-                </span>
-            </LoadingWrapper>
-        );
-    }
-    return null;
-};
+}
 
-Loading.propTypes = {
-    error: PropTypes.bool,
-    timedOut: PropTypes.bool,
-    pastDelay: PropTypes.bool,
-    isInline: PropTypes.bool,
-    isInlineCover: PropTypes.bool,
-};
-
-export default Loading;
+export default Loader;

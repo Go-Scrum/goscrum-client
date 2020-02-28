@@ -7,8 +7,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+// import MenuIcon from '@material-ui/icons/Menu';
+// import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Drawer from './Drawer';
@@ -90,22 +90,22 @@ class Header extends React.Component {
                           Username
                       </Typography>
                       <div>
-                          <IconButton
-                              aria-owns={open ? 'menu-appbar' : null}
-                              aria-haspopup="true"
-                              onClick={this.handleMenu}
-                              color="inherit"
-                          >
-                              <AccountCircle />
-                          </IconButton>
-                          <IconButton
-                              className="d-lg-none"
-                              color="inherit"
-                              onClick={this.toggleDrawer(true)}
-                              aria-label="Menu"
-                          >
-                              <MenuIcon />
-                          </IconButton>
+                          {/*<IconButton*/}
+                          {/*    aria-owns={open ? 'menu-appbar' : null}*/}
+                          {/*    aria-haspopup="true"*/}
+                          {/*    onClick={this.handleMenu}*/}
+                          {/*    color="inherit"*/}
+                          {/*>*/}
+                          {/*    <AccountCircle />*/}
+                          {/*</IconButton>*/}
+                          {/*<IconButton*/}
+                          {/*    className="d-lg-none"*/}
+                          {/*    color="inherit"*/}
+                          {/*    onClick={this.toggleDrawer(true)}*/}
+                          {/*    aria-label="Menu"*/}
+                          {/*>*/}
+                          {/*    <MenuIcon />*/}
+                          {/*</IconButton>*/}
                           <Menu
                               id="menu-appbar"
                               anchorEl={anchorEl}

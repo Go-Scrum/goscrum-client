@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+// import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import './style.css';
 
@@ -15,9 +15,9 @@ const EmailWrapper = ({ forgotPassword, updateFormValues, handleForgotPassword, 
             alignItems="flex-end"
             className="my-5 pt-2 pb-4"
         >
-            <Grid item sm={1}>
-                <AccountCircle className="text-muted" />
-            </Grid>
+            {/*<Grid item sm={1}>*/}
+            {/*    /!*<AccountCircle className="text-muted" />*!/*/}
+            {/*</Grid>*/}
             <Grid item sm={11} className="fullWidth">
                 <TextField
                     id="input-email"
@@ -39,7 +39,7 @@ const EmailWrapper = ({ forgotPassword, updateFormValues, handleForgotPassword, 
             className="btn-block my-3"
             onClick={handleForgotPassword}
         >
-        Next
+            Next
         </Button>
         <Button
             component={Link}
@@ -49,7 +49,7 @@ const EmailWrapper = ({ forgotPassword, updateFormValues, handleForgotPassword, 
             size="small"
             color="primary"
         >
-        Back To Login
+            Back To Login
         </Button>
     </form>
 );

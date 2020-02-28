@@ -7,7 +7,7 @@ const initialData = {
     user: null,
 };
 
-const appReducer = (state = initialData, { type, payload }) => {
+const appReducer = (state = initialData, { type, payload } = {}) => {
     switch (type) {
         case UPDATE_USER:
             return {

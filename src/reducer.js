@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux';
+import { connectRouter } from 'connected-react-router';
 import appReducer from './containers/App/reducer';
 import loginReducer from './containers/Login/reducer';
 import forgotPasswordReducer from './containers/ForgotPassword/reducer';
 import resetPasswordReducer from './containers/ResetPassword/reducer';
 
-export default combineReducers({
+const createRootReducer = history => combineReducers({
+    router: connectRouter(history),
     app: appReducer,
-    routing: routerReducer,
     login: loginReducer,
     forgotPassword: forgotPasswordReducer,
     resetPassword: resetPasswordReducer,
 });
+
+export default createRootReducer;
