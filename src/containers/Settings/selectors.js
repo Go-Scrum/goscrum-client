@@ -1,10 +1,10 @@
 import get from 'lodash/get';
 import { createSelector } from 'reselect';
 
-export const selectForgotPassword = state => get(state, 'forgotPassword');
+export const selectSettings = state => get(state, 'forgotPassword');
 
 export const makeSelectIsFetching = () =>
-    createSelector([selectForgotPassword], isFetching => get(isFetching, 'isFetching', {}));
+    createSelector([selectSettings], state => get(state, 'isFetching', {}));
 
-export const makeSelectForgotPassword = () =>
-    createSelector([selectForgotPassword], forgotPassword => get(forgotPassword, 'forgotPassword', {}));
+export const makeSelectSettings = () =>
+    createSelector([selectSettings], state => get(state, 'workspace_data', {}));

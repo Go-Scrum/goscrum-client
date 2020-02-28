@@ -1,7 +1,6 @@
-/*body {*/
-/*    background-color: #13191C;*/
-/*    !*color: #3c4858;*!*/
-/*}*/
+body {
+    overflow-x: hidden;
+}
 
 button {
     outline: none !important;

@@ -13,6 +13,7 @@ import { configureCognito } from './utils/aws';
 import Routes from './routes';
 import * as actions from './containers/App/actions';
 import theme from './utils/mui-theme';
+import Notifier from './components/Shared/Notifier';
 
 class App extends Component {
     constructor(props) {
@@ -96,6 +97,7 @@ class App extends Component {
                             closeOnClick
                             pauseOnHover
                         />
+                        <Notifier/>
                     </div>
                 </MuiPickersUtilsProvider>
             </MuiThemeProvider>

@@ -13,26 +13,26 @@ import AuthButton from './AuthButton';
 
 const content = [
     {
-        title: 'When a simple thank you is not enough, Applaud them ',
-        byline: 'Make recognition fun. Love your work. #TechHappily',
+        title: 'Keep your team in sync',
+        byline: 'Find harmony in your day as standups, scrums, retrospectives, and surveys run on autopilot. #TechHappily',
         image: '/images/homepage-images/coworkers.svg',
         imageLeft: true,
     },
     {
-        title: 'Invigorate your team with acts of kindness',
-        byline: 'Make recognition more impactful by connecting it to your company’s core values and giving visibility to everyone’s contributions.',
+        title: 'Get more done',
+        byline: 'Enjoy the freedom of a self-managing team as streamlined workflows unlock valuable time.',
         image: '/images/homepage-images/team_spirit.svg',
         imageLeft: false,
     },
     {
-        title: 'Increase engagement and commitment with team members',
-        byline: 'Build a scalable culture of recognition by empowering everyone to recognize their peers, direct reports, and managers.',
+        title: 'Help performers, perform',
+        byline: 'Build a culture of communication across borders and timezones, so your people can perform at their best.',
         image: '/images/homepage-images/discussion.svg',
         imageLeft: true,
     },
     {
-        title: 'Discover the greatness of your team',
-        byline: 'Encourage frequent and timely recognition by integrating with the communication tools your employees use every day.',
+        title: 'Stay analytical',
+        byline: 'Measure engagement, happiness, and productivity with AI language analysis that reveals the thinking behind the answers.',
         image: '/images/homepage-images/connection.svg',
         imageLeft: false,
     },
