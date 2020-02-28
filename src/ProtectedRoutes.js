@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppContainer from './containers/App';
+import PageLayout from './components/Shared/PageLayout/page-layout';
 
 class ProtectedRoute extends React.Component {
     renderRoute = (props, Component, withAuth, childProps, displayHeader) => {
@@ -10,15 +11,23 @@ class ProtectedRoute extends React.Component {
                 <div>
                     <AppContainer displayHeader={displayHeader} childProps={childProps}>
                         <div>
-                            <Component {...props} {...childProps} />
+                            <PageLayout {...childProps}>
+                                <Component {...props} {...childProps} />
+                            </PageLayout>
                         </div>
                     </AppContainer>
                 </div>
             );
         } else if (!withAuth && childProps.isAuthenticated && !childProps.isAuthenticating) {
-            return <Redirect to={{ pathname: '/dashboard', state: { from: props.location, redirectURI: `${props.location.pathname}${props.location.search}` } }} />;
+            return <Redirect to={{
+                pathname: '/dashboard',
+                state: { from: props.location, redirectURI: `${props.location.pathname}${props.location.search}` },
+            }}/>;
         } else if (withAuth && !childProps.isAuthenticated && !childProps.isAuthenticating) {
-            return <Redirect to={{ pathname: '/login', state: { from: props.location, redirectURI: `${props.location.pathname}${props.location.search}` } }} />;
+            return <Redirect to={{
+                pathname: '/',
+                state: { from: props.location, redirectURI: `${props.location.pathname}${props.location.search}` },
+            }}/>;
         }
         return <Component {...props} {...childProps} />;
     };

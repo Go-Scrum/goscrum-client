@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 import Login from './containers/Login';
-import ForgotPassword from './containers/ForgotPassword';
-import ResetPassword from './containers/ResetPassword';
+import SettingsContainer from './containers/Settings';
+import ProjectsContainer from './containers/Projects';
 import NotFound from './containers/NotFound';
 import ProtectedRoute from './ProtectedRoutes';
 import { history } from './store';
@@ -17,9 +17,9 @@ const Routes = ({ childProps }) => (
             <ProtectedRoute path="/" exact component={Home} childProps={childProps} />
             <ProtectedRoute path="/login" exact component={Login} childProps={childProps} />
             <ProtectedRoute path="/login/:username/:password" component={Login} childProps={childProps} />
-            <ProtectedRoute path="/forgot-password" exact component={ForgotPassword} childProps={childProps} />
-            <ProtectedRoute path="/dashboard" exact component={Dashboard} displayHeader childProps={childProps} withAuth />
-            <ProtectedRoute path="/reset-password" exact component={ResetPassword} displayHeader childProps={childProps} withAuth />
+            <ProtectedRoute path="/settings" exact component={SettingsContainer} childProps={childProps} withAuth />
+            <ProtectedRoute path="/dashboard" exact component={Dashboard} childProps={childProps} withAuth />
+            <ProtectedRoute path="/projects" exact component={ProjectsContainer} childProps={childProps} withAuth />
             <Route path="*" component={NotFound} />
         </Switch>
     </ConnectedRouter>

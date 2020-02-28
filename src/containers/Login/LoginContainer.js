@@ -144,7 +144,7 @@ class LoginContainer extends React.Component {
                     handleLogin={this.handleLogin}
                     isFirstTimeLogin={isFirstTimeLogin}
                 />
-                <Loader timedOut={this.props.isFetching || this.props.isAuthenticated} />
+                {/*<Loader timedOut={this.props.isFetching || this.props.isAuthenticated} />*/}
             </div>
         );
     }

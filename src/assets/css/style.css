@@ -1,7 +1,7 @@
-body {
-    background-color: #eee;
-    color: #3c4858;
-}
+/*body {*/
+/*    background-color: #13191C;*/
+/*    !*color: #3c4858;*!*/
+/*}*/
 
 button {
     outline: none !important;
@@ -66,19 +66,11 @@ button {
     width: 100%;
 }
 
-.site-content::after {
-    content: '\00a0'; /* &nbsp; */
-    display: block;
-    margin-top: 1.5em;
-    height: 0;
-    visibility: hidden;
-}
-
-@media (min-width: 768px) {
-    .site-content::after {
-        margin-top: 1.5em;
-    }
-}
+/*@media (min-width: 768px) {*/
+/*    .site-content::after {*/
+/*        margin-top: 1.5em;*/
+/*    }*/
+/*}*/
 
 .site-content--full {
     padding: 0;

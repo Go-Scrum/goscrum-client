@@ -3,16 +3,13 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
     Grid,
     Box,
-    CssBaseline,
-    Button,
     Toolbar,
     AppBar,
     Typography,
 } from '@material-ui/core';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-import AppLink from '../Shared/AppLink/app-link';
 import Section from './home-section';
-// import logo from "../../logo.svg";
+import AuthButton from './AuthButton';
 
 const content = [
     {
@@ -135,7 +132,6 @@ function LandingPage() {
 
     return (
         <div id="home" className={classes.container}>
-            <CssBaseline />
             <Box display={{ xs: 'none', lg: 'block' }}>
                 {patches.map((patch, index) => (
                     <img
@@ -151,14 +147,7 @@ function LandingPage() {
                 <AppBar color="transparent" className={classes.bar}>
                     <Toolbar className={classes.toolbar}>
                         <img src="" alt="logo" className={classes.logo} />
-                        <AppLink to="/login">
-                            <Button
-                                variant="contained"
-                                color="primary"
-                            >
-                                Login
-                            </Button>
-                        </AppLink>
+                        <AuthButton />
                     </Toolbar>
                 </AppBar>
             </ColorChangeScroll>

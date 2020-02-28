@@ -1,66 +1,18 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
-import Amplify, { Auth } from 'aws-amplify';
+import CssBaseline from '@material-ui/core/CssBaseline';
+// import Amplify, { Auth } from 'aws-amplify';
+import { Auth, Hub } from 'aws-amplify';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { configureCognito } from './utils/aws';
 import Routes from './routes';
-import Loader from './components/Shared/Loader';
-import { ENDPOINT } from './middleware/constants';
 import * as actions from './containers/App/actions';
-import { attributesToObject } from './utils/attributesToObject';
 import theme from './utils/mui-theme';
-
-Amplify.configure({
-    Auth: {
-        region: process.env.REACT_APP_USER_POOL_REGION,
-        userPoolId: process.env.REACT_APP_USER_POOL_ID, // OPTIONAL - Amazon Cognito User Pool ID
-        userPoolWebClientId: process.env.REACT_APP_USER_CLIENT_ID, // OPTIONAL - Amazon Cognito Web Client ID
-        identityPoolId: process.env.REACT_APP_USER_IDENTITY_PROVIDER_ID,
-    },
-    API: {
-        endpoints: [
-            {
-                name: ENDPOINT,
-                endpoint: process.env.REACT_APP_API_ENDPOINT,
-            },
-        ],
-    },
-});
-
-// const theme = createMuiTheme({
-//     palette: {
-//         primary: {
-//             main: '#11131b',
-//             light: '#757575',
-//             contrastText: '#fff',
-//         },
-//         secondary: {
-//             main: '#929292',
-//             contrastText: '#fff',
-//         },
-//         // background:{
-//         //     paper: '#757575',
-//         // },
-//         common: {
-//             black: '#000',
-//             white: '#fff',
-//         },
-//     },
-//     breakpoints: {
-//         values: {
-//             xs: 0,
-//             sm: 576,
-//             md: 768,
-//             lg: 992,
-//             xl: 1200,
-//         },
-//     },
-// });
 
 class App extends Component {
     constructor(props) {
@@ -72,27 +24,49 @@ class App extends Component {
         };
     }
 
-    async componentWillMount() {
-        let currentUser;
-        try {
-            if (await Auth.currentSession()) {
-                this.userHasAuthenticated(true);
-                try {
-                    const currentUserInfo = await Auth.currentAuthenticatedUser();
-                    const cognitoUserInfo = await Auth.userAttributes(currentUserInfo);
-                    currentUser = attributesToObject(cognitoUserInfo);
-                    this.props.updateUser(currentUser);
-                } catch (e) {
-                    console.log('error in getting user');
-                }
+    async componentDidMount() {
+        Auth.currentAuthenticatedUser().then(async user => {
+            this.signIn(user);
+        }).catch(async e => {
+            this.setState({ isAuthenticating: false });
+        });
+
+        Hub.listen('auth', async (data) => {
+            switch (data.payload.event) {
+                case 'signIn':
+                    this.signIn(await Auth.currentAuthenticatedUser());
+                    break;
+                case 'signIn_failure':
+                    // setAuthState('signIn');
+                    // setAuthError('Authentication failed.');
+                    this.setState({ isAuthenticating: false, isAuthenticated: false });
+                    break;
+                default:
+                    break;
             }
-        } catch (e) {
-            if (e !== 'No current user') {
-                console.log(e);
-            }
-        }
-        this.setState({ isAuthenticating: false });
+        });
     }
+
+    componentWillUnmount() {
+        Hub.remove('auth');
+    }
+
+    signIn = async authData => {
+        configureCognito(authData.signInUserSession.idToken.jwtToken);
+        // setAuthState('signedIn');
+        this.setState({
+            isAuthenticated: true,
+            isAuthenticating: false,
+        });
+    };
+
+    signOut = async () => {
+        await Auth.signOut().promise();
+        this.setState({
+            isAuthenticated: false,
+            isAuthenticating: false,
+        });
+    };
 
     userHasAuthenticated = isAuthenticated => {
         this.setState({ isAuthenticated });
@@ -104,12 +78,14 @@ class App extends Component {
             isAuthenticated,
             isAuthenticating,
             userHasAuthenticated: this.userHasAuthenticated,
+            signOut: this.signOut,
         };
         return (
             <MuiThemeProvider theme={theme}>
                 <MuiPickersUtilsProvider utils={MomentUtils}>
                     <div className="container container-fluid">
-                        {!isAuthenticating && <Routes childProps={childProps} />}
+                        <CssBaseline/>
+                        {!isAuthenticating && <Routes childProps={childProps}/>}
                         <ToastContainer
                             position="top-right"
                             type="default"
@@ -120,7 +96,6 @@ class App extends Component {
                             closeOnClick
                             pauseOnHover
                         />
-                        <Loader timedOut={isAuthenticating} />
                     </div>
                 </MuiPickersUtilsProvider>
             </MuiThemeProvider>
@@ -138,8 +113,7 @@ const mapDispatchToProps = dispatch =>
         {
             ...actions,
         },
-        dispatch
+        dispatch,
     );
 
 export default connect(null, mapDispatchToProps)(App);
-

@@ -7,7 +7,7 @@ import Slide from '@material-ui/core/Slide';
 import EmailWrapper from './EmailWrapper';
 import VerificationCode from './VerificationCode';
 import VerifyPassword from './VerifyPassword';
-import { PAGES } from '../../containers/ForgotPassword/constants';
+import { PAGES } from '../../containers/Settings/constants';
 import If from '../Shared/If';
 import PaperHeader from '../Shared/PaperHeader';
 

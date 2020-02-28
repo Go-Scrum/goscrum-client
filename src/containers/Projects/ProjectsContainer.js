@@ -6,12 +6,12 @@ import { createSelector } from 'reselect';
 import { Auth } from 'aws-amplify';
 import { toast } from 'react-toastify';
 import Loader from '../../components/Shared/Loader';
-import ResetPassword from '../../components/ResetPassword';
+import Project from '../../components/Projects';
 import AmplifyMessageMap from './../../utils/AmplifyMessageMap';
 import * as actions from './actions';
 import { makeSelectIsFetching, makeSelectResetPassword } from './selectors';
 
-class ResetPasswordContainer extends React.Component {
+class ProjectsContainer extends React.Component {
     componentWillUnmount() {
         this.props.resetState();
     }
@@ -52,19 +52,12 @@ class ResetPasswordContainer extends React.Component {
     render() {
         const { resetPassword } = this.props;
         return (
-            <div>
-                <ResetPassword
-                    resetPassword={resetPassword}
-                    updateFormValues={this.updateFormValues}
-                    handleResetPassword={this.handleResetPassword}
-                />
-                <Loader timedOut={this.props.isFetching} />
-            </div>
+            <Project/>
         );
     }
 }
 
-ResetPasswordContainer.propTypes = {
+ProjectsContainer.propTypes = {
     isFetching: PropTypes.bool,
     resetPassword: PropTypes.object,
     updateFormValues: PropTypes.func.isRequired,
@@ -79,7 +72,7 @@ const mapStateToProps = createSelector(
     (isFetching, resetPassword) => ({
         isFetching,
         resetPassword,
-    })
+    }),
 );
 
 const mapDispatchToProps = dispatch =>
@@ -87,7 +80,7 @@ const mapDispatchToProps = dispatch =>
         {
             ...actions,
         },
-        dispatch
+        dispatch,
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResetPasswordContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsContainer);

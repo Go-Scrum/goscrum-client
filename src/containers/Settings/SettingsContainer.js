@@ -14,7 +14,7 @@ import { makeSelectIsFetching, makeSelectForgotPassword } from './selectors';
 
 import { PAGES } from './constants';
 
-class ForgotPasswordContainer extends React.Component {
+class SettingsContainer extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -97,7 +97,7 @@ class ForgotPasswordContainer extends React.Component {
     }
 }
 
-ForgotPasswordContainer.propTypes = {
+SettingsContainer.propTypes = {
     isFetching: PropTypes.bool,
     login: PropTypes.object,
     forgotPassword: PropTypes.object,
@@ -124,4 +124,4 @@ const mapDispatchToProps = dispatch =>
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer);
