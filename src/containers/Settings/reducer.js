@@ -3,16 +3,12 @@ import {
     TOGGLE_LOADER,
     RESET_STATE,
     SAVE_DATA,
+    GET_DATA,
 } from './constants';
 
 const initialData = {
     isFetching: false,
     workspace_data: {
-        workspace_name: 'TheGeeksTribe Hackathon',
-        url: 'https://durgastuffy-mattermost.centralindia.cloudapp.azure.com',
-        workspace_type: 'Mattermost',
-        client_secret: '6ty9bzx6ujnqfrbefjgopzemfa',
-        client_id: 'yg1e418f33nzdesx6uyh8fom3r',
     },
 };
 
@@ -35,6 +31,24 @@ export default function settingsReducer(state = initialData, { payload, ...actio
             return {
                 ...state,
                 ...initialData,
+            };
+        case GET_DATA.request:
+            return {
+                ...state,
+                workspace_data: payload,
+                isFetching: true,
+            };
+        case GET_DATA.success:
+            return {
+                ...state,
+                workspace_data: payload,
+                isFetching: false,
+            };
+        case GET_DATA.failure:
+            return {
+                ...state,
+                workspace_data: payload,
+                isFetching: false,
             };
         case SAVE_DATA.request:
             return {

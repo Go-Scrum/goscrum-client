@@ -14,20 +14,21 @@ import { openSnackbar } from '../../components/Shared/Notifier';
 
 const SettingsContainer = ({
     isFetching,
-    resetState,
+    getData,
     history,
     settings,
     updateFormValues,
     saveData,
 }) => {
-    useEffect(() => () => {
-        resetState();
+    useEffect(async () => {
+        await getData();
     }, []);
 
     const saveSettingsData = async () => {
-        //TODO Save Workspace Integration
-        const response = await saveData(settings);
+        const { payload: { url } } = await saveData(settings);
         openSnackbar({ message: 'Saved successfully' }, 'success');
+        // redirect to authorize page
+        window.location.href = url;
     };
 
     return (
@@ -45,7 +46,7 @@ const SettingsContainer = ({
 SettingsContainer.propTypes = {
     isFetching: PropTypes.bool,
     settings: PropTypes.object,
-    resetState: PropTypes.func.isRequired,
+    getData: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
     updateFormValues: PropTypes.func.isRequired,
     saveData: PropTypes.func.isRequired,
