@@ -87,7 +87,7 @@ const WorkspaceForm = ({ saveSettingsData, updateFormValues, settings }) => (
                         style={{ marginRight: theme.spacing(1) }}
                         onClick={saveSettingsData}
                     >
-                        Send
+                        Save
                     </Button>
                 </Grid>
             </Grid>

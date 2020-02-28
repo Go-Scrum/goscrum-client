@@ -16,7 +16,7 @@ const initialData = {
     },
 };
 
-export default function forgotPasswordReducer(state = initialData, { payload, ...action } = {}) {
+export default function settingsReducer(state = initialData, { payload, ...action } = {}) {
     switch (action.type) {
         case UPDATE_FORM_VALUES:
             return {
