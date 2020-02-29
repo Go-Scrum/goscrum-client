@@ -5,21 +5,21 @@ import SearchSelect from '../SearchSelect';
 const MultiSelectSettings = ({ fieldLabel, value, handleChange, id, placeHolder, options, isMulti, disabled }) => {
     const getOptions = () => (options && options.length > 0) ? options.map(option => ({
         ...option,
-        label: option.name,
-        value: option.id,
+        label: option.real_name,
+        value: option.user_id,
     })) : [];
 
     const getMultiSelectValue = () => (value && value.length > 0) ? value.map(option => ({
         ...option,
-        label: option.name,
-        value: option.id,
+        label: option.real_name,
+        value: option.user_id,
     })) : [];
 
     const getSingleSelectValue = () => (value && value.id) ?
         {
             ...value,
-            label: value.name,
-            value: value.id,
+            label: value.real_name,
+            value: value.user_id,
         } : null;
 
     return (

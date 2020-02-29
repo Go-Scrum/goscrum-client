@@ -22,7 +22,7 @@ export const makeSelectUsers = () =>
     createSelector([selectProject], state => get(state, 'users', []));
 
 export const makeSelectChannels = () =>
-    createSelector([selectProject], state => get(state, 'isFetchingTeams', []));
+    createSelector([selectProject], state => get(state, 'channels', []));
 
 export const makeSelectTeams = () =>
     createSelector([selectProject], state => get(state, 'teams', []));

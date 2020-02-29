@@ -51,7 +51,7 @@ export default function projectReducer(state = initialData, { payload, ...action
             return {
                 ...state,
                 isFetching: false,
-                projects: payload.data,
+                project: payload,
             };
         case GET_PROJECT.failure:
         case SAVE_PROJECT.failure:

@@ -99,7 +99,6 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                                     <TextField
                                         value={project.reporting_time || ''}
                                         onChange={(e) => updateFormValues({ reporting_time: e.target.value })}
-                                        // label="Time"
                                         type="time"
                                     />
                                 </FormControl>
@@ -115,15 +114,14 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                                         label="Broadcast Team"
                                         labelId="broadcastTeam"
                                         fullWidth
-                                        value={project.team_id}
+                                        value={project.team_id || ''}
                                         onChange={(e) => {
                                             getChannels(settings.id, e.target.value);
                                             updateFormValues({ team_id: e.target.value });
                                         }}
                                     >
-                                        <MenuItem value={10}>Ten</MenuItem>
-                                        <MenuItem value={20}>Twenty</MenuItem>
-                                        <MenuItem value={30}>Thirty</MenuItem>
+                                        {teams && teams.length > 0 && teams.map((data, index) =>
+                                            (<MenuItem key={index} value={data.id}>{data.name}</MenuItem>))}
                                     </Select>
                                 </FormControl>
                             </Box>
@@ -139,15 +137,14 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                                         labelId="broadcastChannel"
                                         fullWidth
                                         disabled={!project.team_id}
-                                        value={project.channel_id}
+                                        value={project.channel_id || ''}
                                         onChange={(e) => {
                                             getUsers(settings.id, e.target.value);
                                             updateFormValues({ channel_id: e.target.value });
                                         }}
                                     >
-                                        <MenuItem value={10}>Ten</MenuItem>
-                                        <MenuItem value={20}>Twenty</MenuItem>
-                                        <MenuItem value={30}>Thirty</MenuItem>
+                                        {channels && channels.length > 0 && channels.map((data, index) =>
+                                            (<MenuItem key={index} value={data.id}>{data.name}</MenuItem>))}
                                     </Select>
                                 </FormControl>
                             </Box>
@@ -185,9 +182,6 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                                             justifyContent="flex-end"
                                             width="100%"
                                             display="flex"
-                                            // border={1}
-                                            // borderColor="grey.500"
-                                            // borderRadius="borderRadius"
                                             mb={2}
                                         >
                                             <Questions
@@ -201,14 +195,14 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                         <Grid item xs={12}>
                             <MultiSelectSettings
                                 disabled={!project.channel_id}
-                                handleChange={participants => updateFormValues({ participants })}
+                                handleChange={Participants => {
+                                    console.log(Participants)
+                                    updateFormValues({ Participants })
+                                }}
                                 placeHolder="Select Participants"
-                                options={[{ name: 'Mehul', id: 1 }, { name: 'Mehul2', id: 2 }, {
-                                    name: 'Mehul3',
-                                    id: 3,
-                                }]}
+                                options={users}
                                 fieldLabel="Participants"
-                                value={[{ name: 'Mehul', id: 1 }]}
+                                value={project.Participants || []}
                                 id="participants"
                             />
                         </Grid>

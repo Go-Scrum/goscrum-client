@@ -38,6 +38,7 @@ const ProjectContainer = ({
     updateFormValues,
     settings,
 }) => {
+    console.log(channels)
     const fetchData = async () => {
         const { params } = match;
         if (settings) {
@@ -45,9 +46,8 @@ const ProjectContainer = ({
         }
         if (params && params.id && params.id !== 'new') {
             const response = await getProject(params.id);
-            console.log(response);
-            // getUsers(settings.id, response.channel_id);
-            // getChannels(settings.id, response.team_id);
+            getUsers(settings.id, response.payload.channel_id);
+            getChannels(settings.id, response.payload.team_id);
         }
     };
 

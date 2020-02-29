@@ -1,4 +1,13 @@
-import { TOGGLE_LOADER, RESET_STATE, GET_PROJECT, SAVE_PROJECT, GET_CHANNELS, GET_USERS, UPDATE_FORM_VALUES } from './constants';
+import {
+    TOGGLE_LOADER,
+    RESET_STATE,
+    GET_PROJECT,
+    SAVE_PROJECT,
+    GET_CHANNELS,
+    GET_USERS,
+    UPDATE_FORM_VALUES,
+    GET_TEAMS,
+} from './constants';
 import { CALL_API, METHODS } from '../../middleware';
 import { API_URL } from '../../utils/url';
 
@@ -64,7 +73,7 @@ const getTeams = workspaceId => ({
                 response: true,
             },
         },
-        types: GET_CHANNELS,
+        types: GET_TEAMS,
     },
 });
 
