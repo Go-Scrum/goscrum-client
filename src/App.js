@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 import CssBaseline from '@material-ui/core/CssBaseline';
-// import Amplify, { Auth } from 'aws-amplify';
 import { Auth, Hub } from 'aws-amplify';
 import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
