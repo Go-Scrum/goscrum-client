@@ -1,5 +1,5 @@
 import { apiActionTypes } from '../../middleware';
-const base = '@@Containers/ForgotPassword/';
+const base = '@@Containers/Settings/';
 
 export const SAVE_DATA = apiActionTypes(`${base}SAVE_DATA`);
 export const GET_DATA = apiActionTypes(`${base}GET_DATA`);

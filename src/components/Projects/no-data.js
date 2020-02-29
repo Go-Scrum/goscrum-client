@@ -25,7 +25,7 @@ function OnBoardingSection() {
         >
             <CssBaseline />
             <Box align="center" paddingX={20} paddingY={10}>
-                <img alt="landing" src="/images/onboard.svg" className={classes.image}/>
+                <img alt="landing" src="/images/projects.svg" className={classes.image}/>
                 <Box marginY={3}>
                     <Typography variant="h5">Start with Project Creation</Typography>
                 </Box>
