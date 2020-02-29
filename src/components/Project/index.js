@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Box,
     Grid,
@@ -9,22 +9,57 @@ import {
     Select,
     MenuItem,
     InputLabel,
+    InputAdornment,
+    IconButton,
 } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import theme from '../../utils/mui-theme';
 import PaperBox from '../Shared/PaperBox/paper-box';
 import MultiSelectSettings from '../Shared/MultiSelectSettings';
+import AppIcon from '../Shared/AppIcon/app-icon';
+import Questions from './Questions';
+import { getRandomColor } from '../../utils/getRandomColor';
 
 const useStyles = makeStyles(() => createStyles({
     container: {
         marginTop: '2rem',
     },
+    cursorPointer: {
+        cursor: 'pointer',
+    },
+    questionContainer: {
+        marginBottom: '1rem',
+    }
 }),
 );
 
 const Project = ({ project, users, channels, teams, upsertProject, updateFormValues, settings, getUsers, getChannels }) => {
     const classes = useStyles();
+    const [newText, setNewText] = useState('');
+
+    const addItem = (e) => {
+        if (e && e.preventDefault) {
+            e.preventDefault();
+        }
+        if (!newText) {
+            return;
+        }
+        const question = {
+            Title: newText,
+            Type: 'Text',
+            ProjectId: project.id,
+            Color: getRandomColor(),
+        };
+        if (project && project.Questions) {
+            const Questions = [...project.Questions, question];
+            updateFormValues({ Questions });
+        } else {
+            updateFormValues({ Questions: [question] });
+        }
+        setNewText('');
+    };
 
     return (
         <Grid container xs={12} item className={classes.container} justify="center">
@@ -116,6 +151,52 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                                     </Select>
                                 </FormControl>
                             </Box>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Grid container spacing={2} className={classes.questionContainer}>
+                                <Grid item xs={12}>
+                                    <form onSubmit={addItem}>
+                                        <TextField
+                                            label="Question"
+                                            id="question"
+                                            fullWidth
+                                            value={newText}
+                                            onChange={e => setNewText(e.target.value)}
+                                            InputProps={{
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <IconButton onClick={addItem}>
+                                                            <AppIcon
+                                                                icon={faPlus}
+                                                                size="sm"
+                                                                className={classes.cursorPointer}
+                                                            />
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    </form>
+                                </Grid>
+                                {project && project.Questions && project.Questions.length > 0 && (
+                                    <Grid item xs={12}>
+                                        <Box
+                                            p={2}
+                                            justifyContent="flex-end"
+                                            width="100%"
+                                            display="flex"
+                                            // border={1}
+                                            // borderColor="grey.500"
+                                            // borderRadius="borderRadius"
+                                            mb={2}
+                                        >
+                                            <Questions
+                                                questions={project.Questions}
+                                            />
+                                        </Box>
+                                    </Grid>
+                                )}
+                            </Grid>
                         </Grid>
                         <Grid item xs={12}>
                             <MultiSelectSettings
