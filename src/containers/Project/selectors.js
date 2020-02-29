@@ -12,6 +12,9 @@ export const makeSelectIsFetchingUsers = () =>
 export const makeSelectIsFetchingChannels = () =>
     createSelector([selectProject], state => get(state, 'isFetchingChannels', false));
 
+export const makeSelectIsFetchingTeams = () =>
+    createSelector([selectProject], state => get(state, 'isFetchingChannels', false));
+
 export const makeSelectProject = () =>
     createSelector([selectProject], state => get(state, 'project', {}));
 
@@ -19,4 +22,7 @@ export const makeSelectUsers = () =>
     createSelector([selectProject], state => get(state, 'users', []));
 
 export const makeSelectChannels = () =>
-    createSelector([selectProject], state => get(state, 'channels', []));
+    createSelector([selectProject], state => get(state, 'isFetchingTeams', []));
+
+export const makeSelectTeams = () =>
+    createSelector([selectProject], state => get(state, 'teams', []));

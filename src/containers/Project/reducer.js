@@ -6,15 +6,18 @@ import {
     GET_USERS,
     GET_CHANNELS,
     UPDATE_FORM_VALUES,
+    GET_TEAMS,
 } from './constants';
 
 const initialData = {
     isFetching: false,
     isFetchingUsers: false,
     isFetchingChannels: false,
+    isFetchingTeams: false,
     project: {},
     users: [],
     channels: [],
+    teams: [],
 };
 
 export default function projectReducer(state = initialData, { payload, ...action } = {}) {
@@ -87,6 +90,22 @@ export default function projectReducer(state = initialData, { payload, ...action
             return {
                 ...state,
                 isFetchingUsers: false,
+            };
+        case GET_TEAMS.request:
+            return {
+                ...state,
+                isFetchingTeams: true,
+            };
+        case GET_TEAMS.success:
+            return {
+                ...state,
+                isFetchingTeams: false,
+                teams: payload,
+            };
+        case GET_TEAMS.failure:
+            return {
+                ...state,
+                isFetchingTeams: false,
             };
         default:
             return state;

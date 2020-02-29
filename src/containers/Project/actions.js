@@ -29,10 +29,10 @@ const getProject = id => ({
     },
 });
 
-const getChannels = () => ({
+const getChannels = (workspaceId, teamId) => ({
     [CALL_API]: {
         requestConfig: {
-            path: API_URL.channels,
+            path: `/mattermost/${workspaceId}/${teamId}/channels`,
             method: METHODS.GET,
             config: {
                 response: true,
@@ -42,16 +42,29 @@ const getChannels = () => ({
     },
 });
 
-const getUsers = () => ({
+const getUsers = (workspaceId, channelId) => ({
     [CALL_API]: {
         requestConfig: {
-            path: API_URL.users,
+            path: `/mattermost/${workspaceId}/channel/${channelId}/participants`,
             method: METHODS.GET,
             config: {
                 response: true,
             },
         },
         types: GET_USERS,
+    },
+});
+
+const getTeams = workspaceId => ({
+    [CALL_API]: {
+        requestConfig: {
+            path: `/mattermost/${workspaceId}/teams`,
+            method: METHODS.GET,
+            config: {
+                response: true,
+            },
+        },
+        types: GET_CHANNELS,
     },
 });
 
@@ -69,4 +82,4 @@ const saveProject = payload => ({
     },
 });
 
-export { toggleLoader, resetState, getProject, saveProject, updateFormValues };
+export { toggleLoader, resetState, getProject, saveProject, updateFormValues, getUsers, getChannels, getTeams };

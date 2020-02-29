@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import { getData as getWorkspaceData } from './containers/Settings/actions';
 import { configureCognito } from './utils/aws';
 import Routes from './routes';
 import * as actions from './containers/App/actions';
@@ -54,6 +55,7 @@ class App extends Component {
     signIn = async authData => {
         configureCognito(authData.signInUserSession.idToken.jwtToken);
         // setAuthState('signedIn');
+        this.props.getWorkspaceData();
         this.setState({
             isAuthenticated: true,
             isAuthenticating: false,
@@ -84,8 +86,8 @@ class App extends Component {
             <MuiThemeProvider theme={theme}>
                 <MuiPickersUtilsProvider utils={MomentUtils}>
                     <div className="container container-fluid">
-                        <CssBaseline/>
-                        {!isAuthenticating && <Routes childProps={childProps}/>}
+                        <CssBaseline />
+                        {!isAuthenticating && <Routes childProps={childProps} />}
                         <ToastContainer
                             position="top-right"
                             type="default"
@@ -96,7 +98,7 @@ class App extends Component {
                             closeOnClick
                             pauseOnHover
                         />
-                        <Notifier/>
+                        <Notifier />
                     </div>
                 </MuiPickersUtilsProvider>
             </MuiThemeProvider>
@@ -109,12 +111,12 @@ App.propTypes = {
     updateUser: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(
-        {
-            ...actions,
-        },
-        dispatch,
-    );
+const mapDispatchToProps = dispatch => bindActionCreators(
+    {
+        ...actions,
+        getWorkspaceData,
+    },
+    dispatch,
+);
 
 export default connect(null, mapDispatchToProps)(App);

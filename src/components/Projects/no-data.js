@@ -40,7 +40,7 @@ function OnBoardingSection() {
                 <Box>
                     <Button
                         component={AppLink}
-                        to="/project/new"
+                        to="/projects/new"
                         color="primary"
                         variant="outlined"
                         className={classes.submit}

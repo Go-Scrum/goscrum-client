@@ -20,8 +20,13 @@ const SettingsContainer = ({
     updateFormValues,
     saveData,
 }) => {
-    useEffect(async () => {
+
+    const fetchData = async () => {
         await getData();
+    };
+
+    useEffect(() => {
+        fetchData();
     }, []);
 
     const saveSettingsData = async () => {
