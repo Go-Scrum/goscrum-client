@@ -38,6 +38,15 @@ export const themeOptions = {
             dark: '#9b9b9b',
             // contrastText: '#000'
         },
+        success: {
+            main: COLORS.success,
+        },
+        error: {
+            main: COLORS.error,
+        },
+        common: {
+            default: COLORS.default,
+        },
     },
     // palette: {
     //   primary: {

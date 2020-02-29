@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     container: {
-        background: theme.palette.background.paper,
+        background: theme.palette.background.default,
         position: 'relative',
         padding: '0 100px',
         display: 'flex',
@@ -179,7 +179,7 @@ function NotFoundRouteHandler(props) {
                             d="M278.228 498.18l-.504-.863L542.864 342.7V197.99h1v145.287l-.248.145z"
                         />
                         <path
-                            fill={theme.palette.primary.main}
+                            fill={theme.palette.background.paper}
                             d="M628.4 818.948L246.988 600.552 628.4 385.532l381.413 215.02z"
                         />
                         <path
@@ -210,7 +210,7 @@ function NotFoundRouteHandler(props) {
                             d="M389.838 878.253c-2.386-1.378-4.327-.272-4.335 2.47s1.92 6.08 4.306 7.46c2.385 1.377 4.326.27 4.334-2.47s-1.92-6.082-4.306-7.46M335.838 846.253c-2.386-1.378-4.327-.272-4.335 2.47s1.92 6.08 4.306 7.46c2.385 1.377 4.326.27 4.334-2.47s-1.92-6.082-4.306-7.46"
                         />
                         <path
-                            fill={theme.palette.primary.main}
+                            fill={theme.palette.background.paper}
                             d="M355.864 508.8L247.59 446.62l.274.024v153.35l108 62.204z"
                         />
                         <path
@@ -230,7 +230,7 @@ function NotFoundRouteHandler(props) {
                             d="M402.864 553.42l31.012-17.772-.012.007v81.727l-31 17.78z"
                         />
                         <path
-                            fill={theme.palette.primary.main}
+                            fill={theme.palette.background.paper}
                             d="M402.864 600.113v35.302l38.75-13.927-8.194-3.946z"
                         />
                         <ellipse
@@ -480,7 +480,7 @@ function NotFoundRouteHandler(props) {
                             d="M433.357 486.132c-6.825 3.94-12.34 13.493-12.318 21.336.02 7.843 5.572 11.006 12.397 7.065 6.825-3.94 12.342-13.494 12.32-21.336s-5.575-11.006-12.4-7.065"
                         />
                         <path
-                            fill={theme.palette.primary.main}
+                            fill={theme.palette.background.paper}
                             d="M1148.99 620.145l-138.198-79.13 138.198-77.91 138.197 77.908z"
                         />
                         <path
@@ -751,7 +751,7 @@ function NotFoundRouteHandler(props) {
                             d="M986.205 333.98l-.45 51.904.07.104 5.993-3.354.396-52.017z"
                         />
                         <path
-                            fill={theme.palette.primary.main}
+                            fill={theme.palette.background.paper}
                             d="M986.437 334.396l-44.48-26.75-.052-.114 5.99-3.355 44.552 26.855z"
                         />
                         <ellipse
@@ -771,7 +771,7 @@ function NotFoundRouteHandler(props) {
                             d="M329.98 372.826l-.448 51.902.07.105 5.992-3.354.397-52.018z"
                         />
                         <path
-                            fill={theme.palette.primary.main}
+                            fill={theme.palette.background.paper}
                             d="M330.213 373.24l-44.48-26.75-.052-.113 5.993-3.355 44.55 26.855z"
                         />
                         <ellipse
@@ -796,7 +796,7 @@ function NotFoundRouteHandler(props) {
                         </g>
                         <g>
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M140.773 758.412L1.467 681.25l137.08-79.862 139.288 75.94z"
                             />
                         </g>
@@ -838,7 +838,7 @@ function NotFoundRouteHandler(props) {
                         </g>
                         <g>
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M180.5 644.794l-41.348-22.924.02.01.676 47.7 41.33 22.933z"
                             />
                         </g>
@@ -854,7 +854,7 @@ function NotFoundRouteHandler(props) {
                                 d="M246.79 594.74l-17.66-9.783 17.378-10.124 17.658 9.627z"
                             />
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M246.812 594.722l-17.62-9.77.008.005.288 20.327 17.613 9.773z"
                             />
                             <path
@@ -1103,7 +1103,7 @@ function NotFoundRouteHandler(props) {
                         </g>
                         <g>
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M813.033 420.195l-13.204-7.566.006.002.014 27.1 13.197 7.57z"
                             />
                         </g>
@@ -1163,7 +1163,7 @@ function NotFoundRouteHandler(props) {
                         </g>
                         <g>
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M822.126 497.593c4.218 0 7.764 1.663 8.78 3.915.192-.423.295-.868.295-1.326 0-2.894-4.062-5.24-9.073-5.24-5.012 0-9.074 2.345-9.074 5.24 0 .458.102.902.294 1.326 1.015-2.253 4.56-3.915 8.78-3.915z"
                             />
                         </g>
@@ -1421,7 +1421,7 @@ function NotFoundRouteHandler(props) {
                                 d="M763.96 368.784l-45.773-26.416 4.288-2.372 45.774 26.248z"
                             />
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M763.984 368.765l-45.73-26.4.008.004.02 40.294 45.723 26.405z"
                             />
                             <path
@@ -1493,7 +1493,7 @@ function NotFoundRouteHandler(props) {
                         </g>
                         <g>
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M761.414 460.506c4.22 0 7.764 1.663 8.78 3.915.192-.422.295-.867.295-1.325 0-2.894-4.064-5.24-9.075-5.24-5.012 0-9.074 2.345-9.074 5.24 0 .458.103.902.295 1.326 1.016-2.25 4.56-3.914 8.78-3.914z"
                             />
                         </g>
@@ -1547,7 +1547,7 @@ function NotFoundRouteHandler(props) {
                                 d="M1286.437 615.822l-10.563-5.85 10.394-6.057 10.562 5.76z"
                             />
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M1286.45 615.812l-10.54-5.843h.006l.172 12.16 10.535 5.845z"
                             />
                             <path
@@ -1561,7 +1561,7 @@ function NotFoundRouteHandler(props) {
                                 d="M1259.535 654.773l-26.93-14.916 26.5-15.438 26.925 14.68z"
                             />
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M1259.568 654.747l-26.87-14.897.014.006.44 30.996 26.856 14.903z"
                             />
                             <path
@@ -1575,7 +1575,7 @@ function NotFoundRouteHandler(props) {
                                 d="M48.966 561.282l-12.62-6.99 12.418-7.236 12.62 6.88z"
                             />
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M48.982 561.27l-12.593-6.982.005.003.207 14.527 12.586 6.984z"
                             />
                             <path
@@ -1589,7 +1589,7 @@ function NotFoundRouteHandler(props) {
                                 d="M24.646 601.012l-24.71-13.688 24.315-14.166 24.71 13.47z"
                             />
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M24.676 600.988L.02 587.318l.012.006.404 28.443 24.644 13.675z"
                             />
                             <path
@@ -1650,13 +1650,13 @@ function NotFoundRouteHandler(props) {
                                 </clipPath>
                                 <g clipPath="url(#SVGID_58_)">
                                     <path
-                                        fill={theme.palette.primary.main}
+                                        fill={theme.palette.background.paper}
                                         d="M525.288,33.392c-14.237,8.22 -28.565,24.07 -37.653,46.048c-3.727,-0.27 -7.704,0.91 -11.595,3.158c-11.803,6.814 -22.816,23.432 -23.676,39.104c-16.44,11.814 -29.138,35.268 -29.083,54.79c0.06,21.114 15.004,29.63 33.38,19.022l104.28,-60.206c18.375,-10.61 33.222,-36.325 33.162,-57.44c-0.048,-17.07 -9.826,-25.895 -23.273,-23.055c-2.152,-28.682 -23.736,-34.01 -45.54,-21.42"
                                     />
                                 </g>
                             </g>
                             <path
-                                fill={theme.palette.primary.main}
+                                fill={theme.palette.background.paper}
                                 d="M431.21 196.672l15.643 7.878 18.24-12.41-11.877-5.992z"
                             />
                             <path
