@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { createSelector } from 'reselect';
 import Loader from '../../components/Shared/Loader';
-import Project from '../../components/Projects';
+import Projects from '../../components/Projects';
 import * as actions from './actions';
 import { makeSelectIsFetching, makeSelectProjects } from './selectors';
 import { LOADER_TYPE } from '../../utils/Constants';
@@ -18,7 +18,7 @@ const ProjectsContainer = ({ projects, isFetching, resetState, getProjects }) =>
 
     return (
         <>
-            <Project projects={projects}/>
+            <Projects projects={projects}/>
             {isFetching && <Loader type={LOADER_TYPE.fullView}/>}
         </>
     );

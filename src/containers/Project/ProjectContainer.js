@@ -13,7 +13,6 @@ const ProjectContainer = ({ project, isFetching, resetState, getProject, savePro
 
     useEffect(() => {
         const { params } = match;
-        // console.log(params.id)
         if (params && params.id && params.id !== 'new') {
             getProject(params.id);
         }
@@ -23,11 +22,11 @@ const ProjectContainer = ({ project, isFetching, resetState, getProject, savePro
     const upsertProject = async () => {
         const response = await saveProject(project);
         //    TODO:Toast here.
-    }
+    };
 
     return (
         <>
-            <Project projects={project}/>
+            <Project project={project} upsertProject={upsertProject}/>
             {isFetching && <Loader type={LOADER_TYPE.fullView}/>}
         </>
     );

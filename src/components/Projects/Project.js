@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, Grid, Typography, Avatar, Chip, Box } from '@material-ui/core';
+import { createStyles, Grid, Typography, Avatar, Chip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import AppIcon from '../Shared/AppIcon/app-icon';
