@@ -170,7 +170,7 @@ const components = {
     ValueContainer,
 };
 
-const IntegrationReactSelect = ({ classes, theme, fieldLabel, isMulti, value, placeHolder, handleChange, options, id }) => {
+const IntegrationReactSelect = ({ classes, theme, fieldLabel, isMulti, value, placeHolder, handleChange, options, id, disabled }) => {
     const selectStyles = {
         input: base => ({
             ...base,
@@ -199,6 +199,7 @@ const IntegrationReactSelect = ({ classes, theme, fieldLabel, isMulti, value, pl
                 options={options}
                 components={components}
                 value={value}
+                isDisabled={disabled}
                 onChange={handleChange}
                 placeholder={placeHolder}
                 isMulti={isMulti}

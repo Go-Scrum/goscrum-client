@@ -8,22 +8,22 @@ import {
     FormLabel,
     Select,
     MenuItem,
-    InputLabel
+    InputLabel,
 } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import theme from '../../utils/mui-theme';
 import PaperBox from '../Shared/PaperBox/paper-box';
-import MultiSelectSettings from "../Shared/MultiSelectSettings";
+import MultiSelectSettings from '../Shared/MultiSelectSettings';
 
 const useStyles = makeStyles(() => createStyles({
-        container: {
-            marginTop: '2rem',
-        },
-    }),
+    container: {
+        marginTop: '2rem',
+    },
+}),
 );
 
-const Project = ({ project, users, channels, upsertProject, updateFormValues }) => {
+const Project = ({ project, users, channels, teams, upsertProject, updateFormValues, settings, getUsers, getChannels }) => {
     const classes = useStyles();
 
     return (
@@ -52,9 +52,6 @@ const Project = ({ project, users, channels, upsertProject, updateFormValues }) 
                                     placeholder="Enter Project Name"
                                     fullWidth
                                 />
-                                {/*<Typography variant="caption">*/}
-                                {/*    This is your Project name*/}
-                                {/*</Typography>*/}
                             </Box>
                         </Grid>
                         <Grid item xs={12}>
@@ -71,9 +68,29 @@ const Project = ({ project, users, channels, upsertProject, updateFormValues }) 
                                         type="time"
                                     />
                                 </FormControl>
-                                {/*<Typography variant="caption">*/}
-                                {/*    This is your Time*/}
-                                {/*</Typography>*/}
+                            </Box>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Box mb={2}>
+                                <FormControl fullWidth>
+                                    <InputLabel id="broadcastTeam">
+                                        Broadcast Team
+                                    </InputLabel>
+                                    <Select
+                                        label="Broadcast Team"
+                                        labelId="broadcastTeam"
+                                        fullWidth
+                                        value={project.team_id}
+                                        onChange={(e) => {
+                                            getChannels(settings.id, e.target.value);
+                                            updateFormValues({ team_id: e.target.value });
+                                        }}
+                                    >
+                                        <MenuItem value={10}>Ten</MenuItem>
+                                        <MenuItem value={20}>Twenty</MenuItem>
+                                        <MenuItem value={30}>Thirty</MenuItem>
+                                    </Select>
+                                </FormControl>
                             </Box>
                         </Grid>
                         <Grid item xs={12}>
@@ -86,8 +103,12 @@ const Project = ({ project, users, channels, upsertProject, updateFormValues }) 
                                         label="Broadcast Channel"
                                         labelId="broadcastChannel"
                                         fullWidth
+                                        disabled={!project.team_id}
                                         value={project.channel_id}
-                                        onChange={(e) => updateFormValues({ channel_id: e.target.value })}
+                                        onChange={(e) => {
+                                            getUsers(settings.id, e.target.value);
+                                            updateFormValues({ channel_id: e.target.value });
+                                        }}
                                     >
                                         <MenuItem value={10}>Ten</MenuItem>
                                         <MenuItem value={20}>Twenty</MenuItem>
@@ -96,30 +117,20 @@ const Project = ({ project, users, channels, upsertProject, updateFormValues }) 
                                 </FormControl>
                             </Box>
                         </Grid>
-                        {/*<Grid item xs={12}>*/}
-                        {/*    <Box mb={2}>*/}
-                        {/*        <TextField*/}
-                        {/*            value={settings.client_id || ''}*/}
-                        {/*            onChange={(e) => updateFormValues({ client_id: e.target.value })}*/}
-                        {/*            label="Client ID"*/}
-                        {/*            fullWidth*/}
-                        {/*            variant="outlined"*/}
-                        {/*        />*/}
-                        {/*        <Typography variant="caption">*/}
-                        {/*            This is Client ID*/}
-                        {/*        </Typography>*/}
-                        {/*    </Box>*/}
-                        {/*</Grid>*/}
-                        {/*<Grid item xs={12}>*/}
-                        {/*    <MultiSelectSettings*/}
-                        {/*        handleChange={e => updateFormValues({'participants', e.target.value})}*/}
-                        {/*        placeHolder="Participants"*/}
-                        {/*        options={[{name: 'Mehul', id: 1}]}*/}
-                        {/*        fieldLabel="Participants"*/}
-                        {/*        value={this.props.shift.facility}*/}
-                        {/*        id="facility"*/}
-                        {/*    />*/}
-                        {/*</Grid>*/}
+                        <Grid item xs={12}>
+                            <MultiSelectSettings
+                                disabled={!project.channel_id}
+                                handleChange={participants => updateFormValues({ participants })}
+                                placeHolder="Select Participants"
+                                options={[{ name: 'Mehul', id: 1 }, { name: 'Mehul2', id: 2 }, {
+                                    name: 'Mehul3',
+                                    id: 3,
+                                }]}
+                                fieldLabel="Participants"
+                                value={[{ name: 'Mehul', id: 1 }]}
+                                id="participants"
+                            />
+                        </Grid>
                         <Grid
                             item
                             xs={12}

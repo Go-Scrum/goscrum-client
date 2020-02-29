@@ -46,8 +46,8 @@ const ProjectContainer = ({
         if (params && params.id && params.id !== 'new') {
             const response = await getProject(params.id);
             console.log(response);
-            // getUsers();
-            // getChannels();
+            // getUsers(settings.id, response.channel_id);
+            // getChannels(settings.id, response.team_id);
         }
     };
 
@@ -71,6 +71,7 @@ const ProjectContainer = ({
                 getUsers={getUsers}
                 getChannels={getChannels}
                 users={users}
+                settings={settings}
                 channels={channels}
                 teams={teams}
                 updateFormValues={updateFormValues}
