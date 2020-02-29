@@ -1,4 +1,5 @@
 import { API, Cache, Auth } from 'aws-amplify';
+import axios from 'axios';
 import { CALL_API, ENDPOINT } from './constants';
 import { getMethod } from './getMethod';
 
@@ -47,28 +48,71 @@ export const callApi = async requestConfig => {
             session = await Auth.currentSession();
             Cache.setItem('session', session);
         }
-
-        const headers = { ...requestConfig.headers, jwtToken: session.idToken.jwtToken };
-        const config = { ...requestConfig.config, ...headers };
-        return API[getMethod(requestConfig.method)](ENDPOINT, requestConfig.path, config).then(response => {
-            if (response.status >= 200 && response.status <= 204) {
-                if (response.data) {
-                    if (response.data.error) {
-                        return Promise.reject(response.data.error);
+        const authHeaders = { Authorization: `Bearer ${session.idToken.jwtToken}` };
+        const headers = { headers: { ...authHeaders } };
+        const axiosConfig = {
+            ...headers,
+            ...requestConfig,
+            url: `${process.env.REACT_APP_API_ENDPOINT}${requestConfig.path}`,
+            method: requestConfig.method,
+        };
+        return axios(axiosConfig)
+            .then(response => {
+                if (response.status >= 200 && response.status <= 204) {
+                    if (response.data) {
+                        if (response.data.error) {
+                            return Promise.reject(response.data.error);
+                        }
+                        return response.data;
                     }
-                    return Promise.resolve(response.data);
+                    // TODO: Decide what to return when response = "204 No Content"
+                    return null;
                 }
-                // TODO: Decide what to return when response = "204 No Content"
-                return null;
-            }
-            return Promise.reject(new Error('Unknown API Error'));
-        }).catch(error => {
-            if (error && error.response && error.response.data) {
-                return Promise.reject(error.response.data);
-            }
-            return Promise.reject(error);
-        });
+                return Promise.reject(new Error('Unknown API Error'));
+            })
+            .catch(error => Promise.reject(error));
     } catch (error) {
         return Promise.reject(error);
     }
 };
+
+// export const callApi = async requestConfig => {
+//     try {
+//         let session = Cache.getItem('session');
+//         if (session) {
+//             const token = session.idToken.jwtToken;
+//             const jwtToken = parseJwt(token);
+//             if (isExpired(jwtToken)) {
+//                 session = await Auth.currentSession();
+//                 Cache.setItem('session', session);
+//             }
+//         } else {
+//             session = await Auth.currentSession();
+//             Cache.setItem('session', session);
+//         }
+//
+//         const headers = { ...requestConfig.headers, Authorization: `Bearer ${session.idToken.jwtToken}` };
+//         const config = { ...requestConfig.config, ...headers };
+//         return API[getMethod(requestConfig.method)](ENDPOINT, requestConfig.path, config).then(response => {
+//             console.log('response', response)
+//             if (response.status >= 200 && response.status <= 204) {
+//                 if (response.data) {
+//                     if (response.data.error) {
+//                         return Promise.reject(response.data.error);
+//                     }
+//                     return Promise.resolve(response.data);
+//                 }
+//                 // TODO: Decide what to return when response = "204 No Content"
+//                 return null;
+//             }
+//             return Promise.reject(new Error('Unknown API Error'));
+//         }).catch(error => {
+//             if (error && error.response && error.response.data) {
+//                 return Promise.reject(error.response.data);
+//             }
+//             return Promise.reject(error);
+//         });
+//     } catch (error) {
+//         return Promise.reject(error);
+//     }
+// };

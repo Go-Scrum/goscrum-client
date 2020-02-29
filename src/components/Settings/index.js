@@ -50,20 +50,6 @@ const WorkspaceForm = ({ saveSettingsData, updateFormValues, settings }) => (
                 <Grid item xs={12}>
                     <Box mb={2}>
                         <TextField
-                            value={settings.client_secret || ''}
-                            onChange={(e) => updateFormValues({ client_secret: e.target.value })}
-                            label="Client Secret"
-                            fullWidth
-                            variant="outlined"
-                        />
-                        <Typography variant="caption">
-                            This is Client Secret
-                        </Typography>
-                    </Box>
-                </Grid>
-                <Grid item xs={12}>
-                    <Box mb={2}>
-                        <TextField
                             value={settings.client_id || ''}
                             onChange={(e) => updateFormValues({ client_id: e.target.value })}
                             label="Client ID"
@@ -72,6 +58,20 @@ const WorkspaceForm = ({ saveSettingsData, updateFormValues, settings }) => (
                         />
                         <Typography variant="caption">
                             This is Client ID
+                        </Typography>
+                    </Box>
+                </Grid>
+                <Grid item xs={12}>
+                    <Box mb={2}>
+                        <TextField
+                            value={settings.client_secret || ''}
+                            onChange={(e) => updateFormValues({ client_secret: e.target.value })}
+                            label="Client Secret"
+                            fullWidth
+                            variant="outlined"
+                        />
+                        <Typography variant="caption">
+                            This is Client Secret
                         </Typography>
                     </Box>
                 </Grid>
