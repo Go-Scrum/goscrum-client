@@ -6,6 +6,7 @@ import Home from './containers/Home';
 import Dashboard from './containers/Dashboard';
 import SettingsContainer from './containers/Settings';
 import ProjectsContainer from './containers/Projects';
+import ProjectContainer from './containers/Project';
 import NotFound from './containers/NotFound';
 import ProtectedRoute from './ProtectedRoutes';
 import { history } from './store';
@@ -17,6 +18,7 @@ const Routes = ({ childProps }) => (
             <ProtectedRoute path="/settings" exact component={SettingsContainer} childProps={childProps} withAuth />
             <ProtectedRoute path="/dashboard" exact component={Dashboard} childProps={childProps} withAuth />
             <ProtectedRoute path="/projects" exact component={ProjectsContainer} childProps={childProps} withAuth />
+            <ProtectedRoute path="/projects/:id" exact component={ProjectContainer} childProps={childProps} withAuth />
             <Route path="*" component={NotFound} />
         </Switch>
     </ConnectedRouter>
