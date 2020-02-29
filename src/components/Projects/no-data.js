@@ -2,6 +2,8 @@ import React from 'react';
 import { createStyles, Grid, Typography, Box, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import AppIcon from '../Shared/AppIcon/app-icon';
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -41,7 +43,7 @@ function OnBoardingSection() {
                         variant="outlined"
                         className={classes.submit}
                     >
-                        Create Project
+                        <AppIcon icon={faPlus} wideRightMargin/> Create Project
                     </Button>
                 </Box>
             </Box>

@@ -1,9 +1,6 @@
-import { UPDATE_FORM_VALUES, TOGGLE_LOADER, RESET_STATE } from './constants';
-
-const updateFormValues = (updatedObject) => ({
-    type: UPDATE_FORM_VALUES,
-    payload: updatedObject,
-});
+import { TOGGLE_LOADER, RESET_STATE, GET_PROJECTS } from './constants';
+import { CALL_API, METHODS } from '../../middleware';
+import { API_URL } from '../../utils/url';
 
 const toggleLoader = (isFetching) => ({
     type: TOGGLE_LOADER,
@@ -14,4 +11,17 @@ const resetState = () => ({
     type: RESET_STATE,
 });
 
-export { updateFormValues, toggleLoader, resetState };
+const getProjects = () => ({
+    [CALL_API]: {
+        requestConfig: {
+            path: `${API_URL.projects}`,
+            method: METHODS.GET,
+            config: {
+                response: true,
+            },
+        },
+        types: GET_PROJECTS,
+    },
+});
+
+export { toggleLoader, resetState, getProjects };

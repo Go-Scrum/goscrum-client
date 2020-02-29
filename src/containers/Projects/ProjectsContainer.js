@@ -1,77 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { createSelector } from 'reselect';
-import { Auth } from 'aws-amplify';
-import { toast } from 'react-toastify';
 import Loader from '../../components/Shared/Loader';
 import Project from '../../components/Projects';
-import AmplifyMessageMap from './../../utils/AmplifyMessageMap';
 import * as actions from './actions';
-import { makeSelectIsFetching, makeSelectResetPassword } from './selectors';
+import { makeSelectIsFetching, makeSelectProjects } from './selectors';
+import { LOADER_TYPE } from '../../utils/Constants';
 
-class ProjectsContainer extends React.Component {
-    componentWillUnmount() {
-        this.props.resetState();
-    }
+const ProjectsContainer = ({ projects, isFetching, resetState, getProjects }) => {
 
-    onPasswordChangeSuccess = (result) => {
-        const { toggleLoader, history, userHasAuthenticated } = this.props;
-        toggleLoader(false);
-        toast.success('Password updated successfully.', { className: 'toast-success' });
-        Auth.signOut().then(() => {
-            userHasAuthenticated(false);
-            history.push('/login');
-        }).catch((error) => console.log('error in sign out', error));
-    };
+    useEffect(() => {
+        // getProjects();
+        return () => resetState();
+    }, []);
 
-    onPasswordChangeFailure = (error) => {
-        const { toggleLoader } = this.props;
-        toggleLoader(false);
-        toast.error(AmplifyMessageMap(error.message), { className: 'toast-error' });
-        this.props.resetState();
-    };
-
-    updateFormValues = (e) => {
-        const { name, value } = e.target;
-        this.props.updateFormValues({ [name]: value });
-    };
-
-    handleResetPassword = (e) => {
-        const { onPasswordChangeSuccess, onPasswordChangeFailure } = this;
-        e.preventDefault();
-        const { toggleLoader, resetPassword } = this.props;
-        toggleLoader(true);
-        Auth.currentAuthenticatedUser()
-            .then(user => Auth.changePassword(user, resetPassword.password, resetPassword.newPassword))
-            .then(data => onPasswordChangeSuccess(data))
-            .catch(error => onPasswordChangeFailure(error));
-    };
-
-    render() {
-        const { resetPassword } = this.props;
-        return (
-            <Project/>
-        );
-    }
-}
+    return (
+        <>
+            <Project projects={projects}/>
+            {isFetching && <Loader type={LOADER_TYPE.fullView}/>}
+        </>
+    );
+};
 
 ProjectsContainer.propTypes = {
     isFetching: PropTypes.bool,
-    resetPassword: PropTypes.object,
-    updateFormValues: PropTypes.func.isRequired,
-    toggleLoader: PropTypes.func.isRequired,
+    projects: PropTypes.object,
     resetState: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
-    userHasAuthenticated: PropTypes.func.isRequired,
+    getProjects: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createSelector(
-    [makeSelectIsFetching(), makeSelectResetPassword()],
-    (isFetching, resetPassword) => ({
+    [makeSelectIsFetching(), makeSelectProjects()],
+    (isFetching, projects) => ({
         isFetching,
-        resetPassword,
+        projects,
     }),
 );
 
