@@ -12,7 +12,7 @@ import { LOADER_TYPE } from '../../utils/Constants';
 const ProjectsContainer = ({ projects, isFetching, resetState, getProjects }) => {
 
     useEffect(() => {
-        // getProjects();
+        getProjects();
         return () => resetState();
     }, []);
 
