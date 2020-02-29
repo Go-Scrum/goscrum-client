@@ -22,7 +22,6 @@ const saveData = payload => ({
             path: `${API_URL.workspace}`,
             method: METHODS.POST,
             config: {
-                response: true,
                 body: payload,
             },
         },
@@ -36,7 +35,6 @@ const getData = () => ({
             path: `${API_URL.workspace}`,
             method: METHODS.GET,
             config: {
-                response: true,
             },
         },
         types: GET_DATA,
