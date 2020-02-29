@@ -50,10 +50,11 @@ export const callApi = async requestConfig => {
         }
         const authHeaders = { Authorization: `Bearer ${session.idToken.jwtToken}` };
         const headers = { headers: { ...authHeaders } };
+        console.log(process.env);
         const axiosConfig = {
             ...headers,
             ...requestConfig,
-            url: `${process.env.REACT_APP_API_ENDPOINT}${requestConfig.path}`,
+            url: `http://192.168.31.56:3000${requestConfig.path}`,
             method: requestConfig.method,
         };
         return axios(axiosConfig)
