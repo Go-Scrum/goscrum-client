@@ -43,8 +43,8 @@ const Projects = ({ projects }) => {
                 </Grid>
                 <Grid item>
                     <Button
-                        onClick={() => {
-                        }}
+                        component={AppLink}
+                        to="/projects/new"
                         color="primary"
                         variant="outlined"
                         className={classes.submit}
