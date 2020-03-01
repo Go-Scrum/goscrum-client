@@ -30,9 +30,6 @@ const getProject = id => ({
         requestConfig: {
             path: `${API_URL.projects}/${id}`,
             method: METHODS.GET,
-            config: {
-                response: true,
-            },
         },
         types: GET_PROJECT,
     },
@@ -43,9 +40,6 @@ const getChannels = (workspaceId, teamId) => ({
         requestConfig: {
             path: `/mattermost/${workspaceId}/${teamId}/channels`,
             method: METHODS.GET,
-            config: {
-                response: true,
-            },
         },
         types: GET_CHANNELS,
     },
@@ -56,9 +50,6 @@ const getUsers = (workspaceId, channelId) => ({
         requestConfig: {
             path: `/mattermost/${workspaceId}/channel/${channelId}/participants`,
             method: METHODS.GET,
-            config: {
-                response: true,
-            },
         },
         types: GET_USERS,
     },
@@ -69,9 +60,6 @@ const getTeams = workspaceId => ({
         requestConfig: {
             path: `/mattermost/${workspaceId}/teams`,
             method: METHODS.GET,
-            config: {
-                response: true,
-            },
         },
         types: GET_TEAMS,
     },
@@ -82,10 +70,7 @@ const saveProject = payload => ({
         requestConfig: {
             path: `${API_URL.projects}`,
             method: METHODS.POST,
-            config: {
-                response: true,
-                body: payload,
-            },
+            data: payload,
         },
         types: SAVE_PROJECT,
     },

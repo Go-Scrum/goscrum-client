@@ -16,9 +16,6 @@ const getProjects = () => ({
         requestConfig: {
             path: `${API_URL.projects}`,
             method: METHODS.GET,
-            config: {
-                response: true,
-            },
         },
         types: GET_PROJECTS,
     },
