@@ -96,6 +96,18 @@ function MainMenuContent({ location }) {
                     <StyledListItemText primary="Settings" />
                 </ListItem>
             </AppLink>
+            <AppLink to="/gitlab">
+                <ListItem
+                    button
+                    selected={basePath === '/gitlab'}
+                    className={basePath === '/gitlab' ? classes.selected : ''}
+                >
+                    <ListItemIcon>
+                        <StyledFontAwesomeIcon icon={faCog} fixedWidth />
+                    </ListItemIcon>
+                    <StyledListItemText primary="Git Lab" />
+                </ListItem>
+            </AppLink>
         </List>
     );
 }

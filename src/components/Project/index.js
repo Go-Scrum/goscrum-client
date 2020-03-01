@@ -23,16 +23,16 @@ import Questions from './Questions';
 import { getRandomColor } from '../../utils/getRandomColor';
 
 const useStyles = makeStyles(() => createStyles({
-    container: {
-        marginTop: '2rem',
-    },
-    cursorPointer: {
-        cursor: 'pointer',
-    },
-    questionContainer: {
-        marginBottom: '1rem',
-    }
-}),
+        container: {
+            marginTop: '2rem',
+        },
+        cursorPointer: {
+            cursor: 'pointer',
+        },
+        questionContainer: {
+            marginBottom: '1rem',
+        }
+    }),
 );
 
 const Project = ({ project, users, channels, teams, upsertProject, updateFormValues, settings, getUsers, getChannels }) => {
@@ -91,16 +91,21 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                         </Grid>
                         <Grid item xs={12}>
                             <Box mb={2}>
-                                <FormControl>
-                                    <FormLabel htmlFor="Schedule">Schedule</FormLabel>
-                                    <Typography id="Schedule">
-                                        Weekly From Monday to Friday
-                                    </Typography>
-                                    <TextField
-                                        value={project.reporting_time || ''}
-                                        onChange={(e) => updateFormValues({ reporting_time: e.target.value })}
-                                        type="time"
-                                    />
+                                <FormControl fullWidth>
+                                    <Grid container item xs={12}>
+                                        <Grid container item xs={6}>
+                                            <Typography id="Schedule">
+                                                Weekly From Monday to Friday
+                                            </Typography>
+                                        </Grid>
+                                        <Grid container item xs={6}>
+                                            <TextField
+                                                value={project.deadline || ''}
+                                                onChange={(e) => updateFormValues({ deadline: e.target.value })}
+                                                type="time"
+                                            />
+                                        </Grid>
+                                    </Grid>
                                 </FormControl>
                             </Box>
                         </Grid>
