@@ -26,7 +26,6 @@ const WorkspaceForm = ({ saveSettingsData, updateFormValues, settings }) => (
                             onChange={(e) => updateFormValues({ workspace_name: e.target.value })}
                             label="Workspace Name"
                             fullWidth
-                            variant="outlined"
                         />
                         <Typography variant="caption">
                             This is your workspace name
@@ -40,7 +39,6 @@ const WorkspaceForm = ({ saveSettingsData, updateFormValues, settings }) => (
                             onChange={(e) => updateFormValues({ url: e.target.value })}
                             label="URL"
                             fullWidth
-                            variant="outlined"
                         />
                         <Typography variant="caption">
                             This is your Mattermost URL
@@ -54,7 +52,6 @@ const WorkspaceForm = ({ saveSettingsData, updateFormValues, settings }) => (
                             onChange={(e) => updateFormValues({ client_id: e.target.value })}
                             label="Client ID"
                             fullWidth
-                            variant="outlined"
                         />
                         <Typography variant="caption">
                             This is Client ID
@@ -68,7 +65,6 @@ const WorkspaceForm = ({ saveSettingsData, updateFormValues, settings }) => (
                             onChange={(e) => updateFormValues({ client_secret: e.target.value })}
                             label="Client Secret"
                             fullWidth
-                            variant="outlined"
                         />
                         <Typography variant="caption">
                             This is Client Secret

@@ -26,7 +26,6 @@ const WorkspaceForm = ({ saveSettingsData, updateFormValues, settings }) => (
                             onChange={(e) => updateFormValues({ url: e.target.value })}
                             label="URL"
                             fullWidth
-                            variant="outlined"
                         />
                         <Typography variant="caption">
                             This is your GitLab URL
@@ -40,7 +39,6 @@ const WorkspaceForm = ({ saveSettingsData, updateFormValues, settings }) => (
                             onChange={(e) => updateFormValues({ client_id: e.target.value })}
                             label="Access Token"
                             fullWidth
-                            variant="outlined"
                         />
                         <Typography variant="caption">
                             This is Access Token
@@ -54,7 +52,6 @@ const WorkspaceForm = ({ saveSettingsData, updateFormValues, settings }) => (
                             onChange={(e) => updateFormValues({ client_secret: e.target.value })}
                             label="Project Id"
                             fullWidth
-                            variant="outlined"
                         />
                         <Typography variant="caption">
                             This is Project Id
