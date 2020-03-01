@@ -42,6 +42,9 @@ const useStyles = makeStyles(() => createStyles({
         backgroundColor: 'rgba(255, 255, 255, 0.00) !important',
         borderLeft: `2px solid ${theme.palette.primary.main}`,
     },
+    icon: {
+        maxWidth: '0.9rem',
+    },
 }),
 );
 
@@ -103,7 +106,7 @@ function MainMenuContent({ location }) {
                     className={basePath === '/gitlab' ? classes.selected : ''}
                 >
                     <ListItemIcon>
-                        <StyledFontAwesomeIcon icon={faCog} fixedWidth />
+                        <img src="/images/gitlab_logo.svg" alt="logo" className={classes.icon} />
                     </ListItemIcon>
                     <StyledListItemText primary="Git Lab" />
                 </ListItem>
