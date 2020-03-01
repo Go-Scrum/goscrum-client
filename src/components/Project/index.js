@@ -200,12 +200,10 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                         <Grid item xs={12}>
                             <MultiSelectSettings
                                 disabled={!project.channel_id}
-                                handleChange={Participants => {
-                                    console.log(Participants)
-                                    updateFormValues({ Participants })
-                                }}
+                                handleChange={Participants => updateFormValues({ Participants })}
                                 placeHolder="Select Participants"
                                 options={users}
+                                isMulti={true}
                                 fieldLabel="Participants"
                                 value={project.Participants || []}
                                 id="participants"

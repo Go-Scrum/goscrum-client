@@ -38,7 +38,7 @@ const Project = ({ project }) => {
                         variant="body2"
                         gutterBottom
                     >
-                        {`Weekly from Monday to Friday at ${project.reporting_time}`}
+                        {`Weekly from Monday to Friday at ${project.deadline}`}
                     </Typography>
                     <Chip className={classes.chip} label={`#${project.channel_name}`} variant="outlined" />
                 </Grid>
