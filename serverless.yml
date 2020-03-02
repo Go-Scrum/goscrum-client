@@ -9,4 +9,4 @@ myWebsite:
 #      hook: yarn run build:dev # A hook to build/test/do anything to your code before uploading
     region: ap-south-1 # The AWS region to deploy your website into
     bucketName: goscrum-website
-    domain: goscrum.io
+#    domain: goscrum.io
