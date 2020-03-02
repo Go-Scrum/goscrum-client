@@ -18,27 +18,29 @@ import {
 } from './selectors';
 import { makeSelectSettings } from '../Settings/selectors';
 import { LOADER_TYPE } from '../../utils/Constants';
+import { openSnackbar } from '../../components/Shared/Notifier';
+import { history } from '../../store';
 
 const ProjectContainer = ({
-    isFetchingChannels,
-    isFetchingUsers,
-    isFetchingTeams,
-    project,
-    users,
-    channels,
-    teams,
-    isFetching,
-    resetState,
-    getProject,
-    getUsers,
-    getChannels,
-    saveProject,
-    getTeams,
-    match,
-    updateFormValues,
-    settings,
-}) => {
-    console.log(channels)
+                              isFetchingChannels,
+                              isFetchingUsers,
+                              isFetchingTeams,
+                              project,
+                              users,
+                              channels,
+                              teams,
+                              isFetching,
+                              resetState,
+                              getProject,
+                              getUsers,
+                              getChannels,
+                              saveProject,
+                              getTeams,
+                              match,
+                              updateFormValues,
+                              history,
+                              settings,
+                          }) => {
     const fetchData = async () => {
         const { params } = match;
         if (settings) {
@@ -59,8 +61,15 @@ const ProjectContainer = ({
     }, [settings]);
 
     const upsertProject = async () => {
+        const { params } = match;
         const response = await saveProject(project);
-        //    TODO:Toast here.
+        if (params && params.id && params.id === 'new') {
+            openSnackbar({ message: 'Project Created successfully' }, 'success');
+            history.push('/projects');
+        } else if (params && params.id && params.id !== 'new') {
+            openSnackbar({ message: 'Project Updated successfully' }, 'success');
+            history.push('/projects');
+        }
     };
 
     return (
@@ -77,7 +86,7 @@ const ProjectContainer = ({
                 updateFormValues={updateFormValues}
             />
             {(isFetching || isFetchingChannels || isFetchingUsers || isFetchingTeams)
-            && <Loader type={LOADER_TYPE.fullView} />}
+            && <Loader type={LOADER_TYPE.fullView}/>}
         </>
     );
 };

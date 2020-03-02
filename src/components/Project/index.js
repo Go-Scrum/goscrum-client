@@ -23,16 +23,16 @@ import Questions from './Questions';
 import { getRandomColor } from '../../utils/getRandomColor';
 
 const useStyles = makeStyles(() => createStyles({
-        container: {
-            marginTop: '2rem',
-        },
-        cursorPointer: {
-            cursor: 'pointer',
-        },
-        questionContainer: {
-            marginBottom: '1rem',
-        }
-    }),
+    container: {
+        marginTop: '2rem',
+    },
+    cursorPointer: {
+        cursor: 'pointer',
+    },
+    questionContainer: {
+        marginBottom: '1rem',
+    },
+}),
 );
 
 const Project = ({ project, users, channels, teams, upsertProject, updateFormValues, settings, getUsers, getChannels }) => {
@@ -59,6 +59,14 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
             updateFormValues({ Questions: [question] });
         }
         setNewText('');
+    };
+
+    const getChannelName = (id) => {
+        if (channels && channels.length > 0) {
+            const channel = channels.find(item => item.id === id);
+            return channel && channel.name ? channel.name : '';
+        }
+        return '';
     };
 
     return (
@@ -125,8 +133,7 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                                             updateFormValues({ team_id: e.target.value });
                                         }}
                                     >
-                                        {teams && teams.length > 0 && teams.map((data, index) =>
-                                            (<MenuItem key={index} value={data.id}>{data.name}</MenuItem>))}
+                                        {teams && teams.length > 0 && teams.map((data, index) => (<MenuItem key={index} value={data.id}>{data.name}</MenuItem>))}
                                     </Select>
                                 </FormControl>
                             </Box>
@@ -146,10 +153,18 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                                         onChange={(e) => {
                                             getUsers(settings.id, e.target.value);
                                             updateFormValues({ channel_id: e.target.value });
+                                            updateFormValues({ channel_name: getChannelName(e.target.value) });
                                         }}
                                     >
-                                        {channels && channels.length > 0 && channels.map((data, index) =>
-                                            (<MenuItem key={index} value={data.id}>{data.name}</MenuItem>))}
+                                        {channels && channels.length > 0 && channels.map((data, index) => (
+                                            <MenuItem
+                                                key={index}
+                                                value={data.id}
+                                                name={data.name}
+                                            >
+                                                {data.name}
+                                            </MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
                             </Box>
@@ -203,7 +218,7 @@ const Project = ({ project, users, channels, teams, upsertProject, updateFormVal
                                 handleChange={Participants => updateFormValues({ Participants })}
                                 placeHolder="Select Participants"
                                 options={users}
-                                isMulti={true}
+                                isMulti
                                 fieldLabel="Participants"
                                 value={project.Participants || []}
                                 id="participants"
