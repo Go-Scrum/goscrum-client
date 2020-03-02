@@ -23,7 +23,7 @@ yarn-error.log*
 
 .idea/
 
-serverless.yml
+#serverless.yml
 
 .serverless/
 /.env.staging
