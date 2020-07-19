@@ -23,7 +23,7 @@
     "clsx": "^1.1.0",
     "connected-react-router": "^6.6.1",
     "history": "4.7.2",
-    "lodash": "4.17.4",
+    "lodash": "4.17.19",
     "material-ui-pickers": "^1.0.0-rc.14",
     "moment": "^2.20.1",
     "prop-types": "15.6.0",
